@@ -57,36 +57,29 @@
     <!-- =================================================================================================== -->
 
     <div class="container">
-
-        <!-- user alias -->
         <div class="row">
             <div class="col">
 
-                <h6>User Alias:  
-
-                </h6>
-            
-            </div>
-        </div>
-
-        <!-- user name  -->
-        <div class="row">
-            <div class="col">
-
-                <h6>Name:   
-
-                </h6>
+                <!-- user alias -->
+                <h6>User Alias: {{ user_results[0].alias }}</h6>
 
             </div>
         </div>
 
-        <!-- user email  -->
         <div class="row">
             <div class="col">
 
-                <h6>Email:   
+                <!-- user name  -->
+                <h6>Name: {{ user_results[0].name }}</h6>
 
-                </h6>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+
+                <!-- user email  -->
+                <h6>Email: {{ user_results[0].email }} </h6>
 
             </div>
         </div>
@@ -95,7 +88,7 @@
         <div class="row">
             <div class="col">
 
-                <h6>Total Reviews: 
+                <h6>Total Reviews: {{ len(review_results) }}
 
                 </h6>
 
@@ -107,15 +100,15 @@
                 <h5>Posted Reviews on the following books:</h5>
 
                 <!-- LOOP for all reviews by user: each is a link -->
-             
-                
+
+
                 <div class="row">
                     <div class="col">
                         <button type="submit" class="btn btn-link">Link</button>
                     </div>
                 </div>
-               
-                
+
+
             </div>
         </div>
 

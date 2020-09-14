@@ -235,19 +235,69 @@ def booksPage():
 def getBookReview():
     user_id = session['user_id']
 
-
-
+    # getting book title & author 
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM books LEFT JOIN authors ON books.author_id = authors.id LEFT JOIN reviews ON books.id=reviews.book_id JOIN users ON reviews.user_id=users.id WHERE books.id = %(bookID)s;"
     data = {
         'bookID': request.form['book_id']
     }
-
     results = mysql.query_db(query, data)
 
-    print("======================================")
-    print(results)
-    return redirect('/')
+    # getting reviews for the boook
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM reviews JOIN users ON reviews.user_id = users.id WHERE book_id = %(bookID)s;"
+    data = {
+        'bookID': request.form['book_id']
+    }
+    review_results = mysql.query_db(query, data)
+
+    return render_template('bookreview.html', results = results, review_results= review_results)
+
+
+
+# ====================================================
+#            /getUser: users.html
+# ====================================================
+@app.route('/getUser', methods=['POST', 'GET'])
+def getUser():
+    user_id = session['user_id']
+
+    # getting user data
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM users WHERE id = %(id)s;"
+    data = {
+        'id': request.form['userID']
+    }
+    user_results = mysql.query_db(query, data)
+
+
+    # getting reviews by the user
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM reviews JOIN books ON reviews.book_id=books.id WHERE reviews.user_id = %(user_id)s;"
+    data = {
+        'user_id': request.form['userID']
+    }
+    review_results = mysql.query_db(query, data)
+
+    # getting total reviews by user
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT COUNT(id) FROM reviews WHERE reviews.user_id = %(user_id)s;"
+    data = {
+        'user_id': request.form['userID']
+    }
+    count_results = mysql.query_db(query, data)
+
+    print("------------------------")
+    print(user_results)
+
+    return render_template('users.html', user_results = user_results, review_results = review_results, count_results = count _results)
+
+
+
+
+# ====================================================
+#        LOG OUT: clear session
+# ====================================================
 
 
 # ====================================================

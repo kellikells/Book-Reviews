@@ -45,25 +45,24 @@
     </nav>
 
     <!-- =================================================================================================== -->
-
+    {% for book in results %}
     <div class="container">
+
 
         <!-- book title  -->
         <div class="row">
-            <h5> 
-                
-            
+            <h5>
+                {{ book.title }}
             </h5>
         </div>
-
-        <!-- author  -->
         <div class="row">
-            <h6>
-                
-            
-            </h6>
-        </div>
 
+            <!-- author  -->
+            <h6>
+                {{ book.author_name }}
+            </h6>
+
+        </div>
         <div class="row">
             <div class="col-7" style="padding-right: 30px;">
                 <h3 style="border-bottom: solid 2px black;">Reviews:</h3>
@@ -71,35 +70,38 @@
                 <!-- LOOP THROUGH REVIEWS: -->
                 <!-- if it's user's review, add delete button -->
 
-              
+                {% for review in review_results %}
                 <div class="row">
                     <div class="col" style="margin-left: 20px; border-bottom: solid 2px black;">
+
                         <h6>
-
-                            Rating: 
-
+                            Rating: {{ review.rating }}
                         </h6>
 
-                        <!-- user's alias( link) & comment -->
-                        <p>
+                        <div>
+                            
+                            <!-- form routes to user page of review, using hidden input value -->
+                            <form action="/getUser" method="post">
 
-                            user's alias as a link says: comment 
+                                <input type="hidden" name="userID" value="{{ review.user_id }}">
+                                <!-- user's alias( link) & comment -->
+                                <button type="submit" class="btn btn-link">{{ review.alias }}</button> says:
+                                {{ review.content }}
 
-                        </p>
+                            </form>
+
+                        </div>
 
                         <!-- comment timestamp  -->
                         <p>
-
-                            timestampof comment 
-
+                            {{ review.updated_at }}
                         </p>
 
                     </div>
                 </div>
-           
+                {% endfor %}
 
             </div>
-
 
             <!-- ADD A REVIEW  -->
             <div class="col-5">
@@ -143,7 +145,7 @@
 
         </div>
     </div>
-
+    {% endfor %}
 
 
 
