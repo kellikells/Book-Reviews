@@ -30,16 +30,17 @@
             </svg>
             {{ session['user_alias'] }}
         </span>
+     
+            <!-- =========== ADD BOOKS AND REVIEW ROUTE =========== -->
+            <form action="/addPage" method="get" class="form-inline justify-content-end">
+                <button class="btn" type="submit" style="color: white;">Add Book and Review</button>
+            </form>
 
-        <!-- =========== ADD BOOKS AND REVIEW ROUTE =========== -->
-        <form action="/add" method="post" class="form-inline justify-content-end">
-            <button class="btn" type="submit" style="color: white;">Add Book and Review</button>
-        </form>
-
-        <!-- =================== LOGOUT ROUTE ===================== -->
-        <form action="/logout" method="post" class="form-inline justify-content-end">
-            <button class="btn" type="submit" style="color: white;">log out</button>
-        </form>
+            <!-- =================== LOGOUT ROUTE ===================== -->
+            <form action="/logout" method="post" class="form-inline justify-content-end">
+                <button class="btn" type="submit" style="color: white;">log out</button>
+            </form>
+      
     </nav>
 
     <!-- =================================================================================================== -->
@@ -54,7 +55,7 @@
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
-        
+
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -62,8 +63,8 @@
 
                                 <!-- book title: link to book's page -->
                                 <h5 class="card-title">
-                                    <a href="#" class="card-link"> 
-                                        
+                                    <a href="#" class="card-link">
+
 
                                     </a>
                                 </h5>
@@ -73,21 +74,21 @@
 
                                         <!-- rating -->
                                         <h5 class="card-text">
-                                            Rating: 
-                                            
+                                            Rating:
+
                                         </h5>
 
                                         <!-- most recent comment: username is a link -->
                                         <h5 class="card-text">
-                                            <a href="#" class="card-link">  
-                                                
-                                            
+                                            <a href="#" class="card-link">
+
+
                                             </a>
                                         </h5>
 
                                         <!-- comment's timestamp  -->
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            Rating: 
+                                            Rating:
 
                                         </h6>
                                     </div>
@@ -98,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-            
+
 
             </div>
 
@@ -109,14 +110,14 @@
 
                 <div class="row">
                     <div class="col">
-                
+
                         <div data-spy="scroll" class="scrollspy list-group">
 
                             <!-- LOOP THROUGH ALL BOOKS WITH REVIEWS -->
-                            <a class="list-group-item" href="#"> 
-                                
+                            <a class="list-group-item" href="#">
+
                             </a>
-                            
+
                         </div>
 
                     </div>

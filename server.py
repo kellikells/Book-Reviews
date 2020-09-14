@@ -129,7 +129,31 @@ def login():
 @app.route('/getReviews', methods=['GET'])
 def getReviews():
     user_id= session['user_id']
+
+
+
     return render_template('books.html', user_id = user_id)
+
+# ====================================================
+#               /addPage: add.html
+# ====================================================
+@app.route('/addPage', methods=['GET'])
+def addPage():
+    user_id= session['user_id']
+
+    return render_template('add.html')
+
+
+
+
+# ====================================================
+#           /booksPage: books.html (home)
+# ====================================================
+@app.route('/booksPage', methods=['GET'])
+def booksPage():
+    user_id= session['user_id']
+
+    return render_template('books.html')
 
 
 
