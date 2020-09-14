@@ -84,13 +84,11 @@
             </div>
         </div>
 
-        <!-- user total reviews -->
         <div class="row">
             <div class="col">
 
-                <h6>Total Reviews: {{ len(review_results) }}
-
-                </h6>
+                <!-- user total reviews -->
+                <h6>Total Reviews: {{ count_results[0].count }}</h6>
 
             </div>
         </div>
@@ -99,20 +97,27 @@
             <div class="col">
                 <h5>Posted Reviews on the following books:</h5>
 
-                <!-- LOOP for all reviews by user: each is a link -->
+                <!-- LOOP for all reviews by user: -->
 
-
+                {% for review in review_results %}
                 <div class="row">
                     <div class="col">
-                        <button type="submit" class="btn btn-link">Link</button>
+
+                        <!-- each review title is a link  -->
+
+
+                        <form action="/get_book_review" method="post">
+                            <input type="hidden" name="book_id" value="{{ review.book_id }}">
+
+                            <button type="submit" class="btn btn-link">{{ review.title }}</button>
+                        </form>
+
                     </div>
                 </div>
-
+                {% endfor %}
 
             </div>
         </div>
-
-
     </div>
 
 

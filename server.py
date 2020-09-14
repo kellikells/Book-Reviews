@@ -273,7 +273,7 @@ def getUser():
 
     # getting reviews by the user
     mysql = connectToMySQL('booksdb')
-    query = "SELECT * FROM reviews JOIN books ON reviews.book_id=books.id WHERE reviews.user_id = %(user_id)s;"
+    query = "SELECT reviews.id,reviews.book_id,reviews.user_id,books.title FROM reviews JOIN books ON reviews.book_id=books.id WHERE reviews.user_id = %(user_id)s;"
     data = {
         'user_id': request.form['userID']
     }
@@ -281,16 +281,16 @@ def getUser():
 
     # getting total reviews by user
     mysql = connectToMySQL('booksdb')
-    query = "SELECT COUNT(id) FROM reviews WHERE reviews.user_id = %(user_id)s;"
+    query = "SELECT COUNT(id) AS count FROM reviews WHERE reviews.user_id = %(user_id)s;"
     data = {
         'user_id': request.form['userID']
     }
     count_results = mysql.query_db(query, data)
 
     print("------------------------")
-    print(user_results)
+    print(review_results)
 
-    return render_template('users.html', user_results = user_results, review_results = review_results, count_results = count _results)
+    return render_template('users.html', user_results = user_results, review_results = review_results, count_results = count_results)
 
 
 
