@@ -38,6 +38,7 @@
 
             <!-- =================== LOGOUT ROUTE ===================== -->
             <form action="/logout" method="post" class="form-inline justify-content-end">
+
                 <button class="btn" type="submit" style="color: white;">log out</button>
             </form>
       
@@ -56,16 +57,17 @@
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
 
+                {% for review in results %}
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
+                                <input type="hidden" name="userID" value="{{ review.users_id }}">
 
                                 <!-- book title: link to book's page -->
                                 <h5 class="card-title">
                                     <a href="#" class="card-link">
-
-
+                                        {{ review.title }}
                                     </a>
                                 </h5>
 
@@ -73,33 +75,30 @@
                                     <div class="col" style="margin-left: 30px;">
 
                                         <!-- rating -->
-                                        <h5 class="card-text">
-                                            Rating:
+                                        <h6 class="card-text">
+                                            Rating: {{ review.rating }}
 
-                                        </h5>
+                                        </h6>
 
                                         <!-- most recent comment: username is a link -->
                                         <h5 class="card-text">
-                                            <a href="#" class="card-link">
+                                            <a href="#" class="card-link">    {{ review.alias }}   </a> said: {{ review.content }}
 
-
-                                            </a>
                                         </h5>
 
                                         <!-- comment's timestamp  -->
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            Rating:
+                                            posted @ {{ review.updated_at }}
 
                                         </h6>
                                     </div>
                                 </div>
 
-
                             </div>
                         </div>
                     </div>
                 </div>
-
+                {% endfor %}
 
             </div>
 

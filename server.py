@@ -115,7 +115,7 @@ def login():
             session['user_alias'] = result[0]['alias']
 
             print(session)
-            return redirect('/getReviews')
+            return redirect('/booksPage')
     
         # if username & password don't match
         # --------------------------------------
@@ -123,15 +123,7 @@ def login():
             flash("You could not be logged in", 'login')
             return redirect("/")
 
-# =====================================================
-#                 get book reviews 
-# =====================================================
-@app.route('/getReviews', methods=['GET'])
-def getReviews():
-    user_id= session['user_id']
 
-
-    return render_template('books.html', user_id = user_id)
 
 # ====================================================
 #               /addPage: add.html
@@ -155,20 +147,19 @@ def addReview():
     if len(request.form['title'])<1:
         flash("title cannot be empty", 'title')
     
-    if len(request.form['new-author']) <1 and request.form['old-author'] == 0:
-        flash("author must be selected or entered", 'author')
+    # if len(request.form['new-author']) <1 and request.form['old-author'] == 0:
+    #     flash("author must be selected or entered", 'author')
     
     if len(request.form['content'])<1:
         flash("review content cannot be empty", 'review')
 
-    if request.form['rating'] == 0:
-        flash("select a rating", 'rating')
+    # if request.form['rating'] == 0:
+    #     flash("select a rating", 'rating')
 
     # initiate any flash messages 
     # --------------------------------------
     if '_flashes' in session.keys():
         return redirect("/addPage")
-
 
 
 
@@ -219,25 +210,6 @@ def addReview():
 
 
     return redirect('/addPage')
-    # mysql = connectToMySQL('booksdb')
-    # query = "INSERT INTO books (author_id created_at, updated_at, user_id) VALUES (%(message)s, NOW(), NOW(), %(user_id)s);"
-    # data = {
-    #     'message': request.form['PostMessage'],
-    #     'user_id': user_id
-    # }
-    # sendMessage = mysql.query_db(query, data)
-    # print("SEND MESSAGE:==================", sendMessage)
-
-    # return render_template('TheWall.html', sendMessage = sendMessage, user_id = user_id)
-
-
-
-
-
-
-# ====================================================
-#           
-# ====================================================
 
 
 # ====================================================
@@ -247,7 +219,20 @@ def addReview():
 def booksPage():
     user_id= session['user_id']
 
-    return render_template('books.html')
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM reviews LEFT JOIN users ON reviews.user_id= users.id JOIN books ON reviews.book_id = books.id JOIN authors ON books.author_id= authors.id ORDER BY reviews.id DESC LIMIT 3;"
+    results= mysql.query_db(query)
+
+    print("------------------------------")
+    print(results)
+
+
+    return render_template('books.html', results = results)
+
+
+# ====================================================
+#           
+# ====================================================
 
 
 
