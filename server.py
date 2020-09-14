@@ -131,7 +131,6 @@ def getReviews():
     user_id= session['user_id']
 
 
-
     return render_template('books.html', user_id = user_id)
 
 # ====================================================
@@ -144,6 +143,78 @@ def addPage():
     return render_template('add.html')
 
 
+# ====================================================
+#        CREATE REVIEW: insert into database
+# ====================================================
+
+@app.route('/addReview', methods=['POST']) 
+def addReview():
+    user_id = session['user_id']
+
+    # if the user typed in the input for new-author
+    # then add this author to database
+    if request.form['new-author']:
+
+        # --------- adding author to db 
+        # =====================================
+        mysql = connectToMySQL('booksdb')
+        query = "INSERT INTO authors (author_name, created_at, updated_at) VALUES (%(author_name)s, NOW(), NOW());"
+        data = {
+            'author_name': request.form['new-author']
+        }
+        # saving author id
+        new_author = mysql.query_db(query,data)
+        print("------------------------")
+        print("NEW AUTHOR:", new_author)
+
+        # ---------  add book to database
+        # =====================================
+        mysql = connectToMySQL('booksdb')
+        query = "INSERT INTO books (author_id, title, created_at, updated_at) VALUES (%(author_id)s, %(title)s, NOW(), NOW());"
+        data = {
+            'author_id': new_author,
+            'title': request.form['title']
+        }
+
+        # saving book id
+        new_book = mysql.query_db(query,data)
+        print("------------------------")
+        print("BOOK ADDED", new_book)
+
+        # ---------  add review to database
+        # =====================================
+        mysql = connectToMySQL('booksdb')
+        query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
+        data = {
+            'book_id': new_book,
+            'user_id': user_id,
+            'content': request.form['content'],
+            'rating': request.form['rating']
+        }
+
+        mysql.query_db(query,data)
+
+
+    return redirect('/addPage')
+    # mysql = connectToMySQL('booksdb')
+    # query = "INSERT INTO books (author_id created_at, updated_at, user_id) VALUES (%(message)s, NOW(), NOW(), %(user_id)s);"
+    # data = {
+    #     'message': request.form['PostMessage'],
+    #     'user_id': user_id
+    # }
+    # sendMessage = mysql.query_db(query, data)
+    # print("SEND MESSAGE:==================", sendMessage)
+
+    # return render_template('TheWall.html', sendMessage = sendMessage, user_id = user_id)
+
+
+
+
+
+
+# ====================================================
+#           
+# ====================================================
 
 
 # ====================================================
