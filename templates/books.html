@@ -90,12 +90,15 @@
                                         <!-- most recent comment: username is a link -->
                                         <h5 class="card-text">
 
-                                            <button type="submit" class="btn btn-link">
-                                                {{ review.alias }}
-                                            </button>
-                                            said: {{ review.content }}
+                                            <!-- form routes to user page of review, using hidden input value -->
+                                            <form action="/getUser" method="post">
 
-                                            <input type="hidden" name="userID" value="{{ review.users_id }}">
+                                                <input type="hidden" name="userID" value="{{ review.user_id }}">
+
+                                                <button type="submit" class="btn btn-link">{{ review.alias }}</button> said: {{ review.content }}
+
+                                            </form>
+
 
                                         </h5>
 

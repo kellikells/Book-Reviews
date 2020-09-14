@@ -49,7 +49,7 @@
     <div class="container">
 
 
-        <!-- book title  -->
+        <!---------------------------- book title  ---------------------------->
         <div class="row">
             <h5>
                 {{ book.title }}
@@ -79,7 +79,7 @@
                         </h6>
 
                         <div>
-                            
+
                             <!-- form routes to user page of review, using hidden input value -->
                             <form action="/getUser" method="post">
 
@@ -103,7 +103,7 @@
 
             </div>
 
-            <!-- ADD A REVIEW  -->
+            <!----------------------- ADD A REVIEW  ------------------------->
             <div class="col-5">
                 <div class="row">
                     <h4>Add a Review:</h4>
@@ -111,10 +111,14 @@
 
 
                 <!-- ADD REVIEW ROUTE  -->
-                <form>
-                    <div class="form-group">
+                <form action="/additionalReview" method="post">
 
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <!-- book_id & author_id data for adding review -->
+                    <input type="hidden" name="book_id" value="{{book.id}}">
+                    <input type="hidden" name="authorID" value="{{book.author_id}}">
+
+                    <div class="form-group">
+                        <textarea name="content" class="form-control" id="content" rows="3"></textarea>
                     </div>
 
 
@@ -122,7 +126,7 @@
                     <div class="form-group row">
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
                         <div class="col-sm-5">
-                            <select class="custom-select" id="rating">
+                            <select name="rating" class="custom-select" id="rating">
                                 <option selected>Choose...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>

@@ -211,13 +211,31 @@ def addReview():
 
     return redirect('/addPage')
 
+# ====================================================
+#           ADD REVIEW FROM bookreview.html
+# ====================================================
+@app.route('/additionalReview', methods=['POST'])
+def additionalReview():
+    user_id = session['user_id']
 
+    mysql = connectToMySQL('booksdb')
+    query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
+    data = {
+        'book_id': request.form['book_id'],
+        'user_id': user_id,
+        'content': request.form['content'],
+        'rating': request.form['rating']
+    }
+    mysql.query_db(query,data)
+
+
+    return redirect('/booksPage')
 # ====================================================
 #           /booksPage: books.html (home)
 # ====================================================
 @app.route('/booksPage', methods=['GET'])
 def booksPage():
-    user_id= session['user_id']
+    user_id = session['user_id']
 
     # reviews join users, join books, join authors
     mysql = connectToMySQL('booksdb')
@@ -234,6 +252,7 @@ def booksPage():
 @app.route('/get_book_review', methods=['POST', 'GET'])
 def getBookReview():
     user_id = session['user_id']
+    
 
     # getting book title & author 
     mysql = connectToMySQL('booksdb')
