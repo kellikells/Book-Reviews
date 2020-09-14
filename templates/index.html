@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Registration</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- static css -->
+    <link rel="stylesheet" href="../static/style.css">
+
+
+
+    <!-- Link to jQuery  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4" style="text-align: center;">Favorite Recipes!</h1>
+            </div>
+        </div>
+
+
+
+        <!-- ======== ALERT FOR REGISTER SUCCESS ======== -->
+
+        <div class="container" style="min-height:100%; width:80%">
+            {% with messages = get_flashed_messages(category_filter=["success"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <h4 class="alert-heading">SUCCESS!</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block body %}{% endblock %}
+        </div>
+
+
+        <div class="row">
+
+            <!-- =============== REGISTRATION COLUMN ================== -->
+            <div class="col">
+                <h2>Register here!</h2>
+                <form action="/register" method="post">
+
+                    <!-- username: letters only, at least 2 characters -->
+                    <div class="form-group">
+                        <label class="labels" for="username">User name:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["username"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input name="username" type="text" class="form-control" id="username">
+                    </div>
+
+
+
+                    <!-- email: email format, not already in database -->
+                    <div class="form-group">
+                        <label class="labels" for="email">Email:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["email"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input name="email" type="text" class="form-control" id="email">
+                    </div>
+
+                    <!-- birthday: at least 18 years old  -->
+                    <div class="form-group">
+                        <label class="labels" for="birthday">Birthday:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["birthday"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input type="date" id="birthday" name="birthday">
+                    </div>
+
+                    <!-- password: at least 8 characters -->
+                    <div class="form-group">
+                        <label class="labels" for="password">Password:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["password"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input name="password" type="password" class="form-control" id="password">
+                    </div>
+
+                    <!-- confirm password: matches password -->
+                    <div class="form-group">
+                        <label class="labels" for="confirm-password">Confirm password:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["confirm-password"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input name="confirm-password" type="password" class="form-control" id="confirm-password">
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="bttnSubmit">Register!</button>
+                </form>
+            </div>
+
+            <!-- =============== LOGIN COLUMN ================ -->
+            <div class="col">
+                <h2>Login here!</h2>
+                <form action="/login" method="post">
+
+                    <!-- email -->
+                    <div class="form-group">
+                        <label class="labels" for="email">Email:</label>
+                        <input name="email" type="text" class="form-control" id="email">
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                        <label class="labels" for="password">Password:</label>
+                        <input name="password" type="password" class="form-control" id="password">
+                    </div>
+                    <div>
+                        {% with errors = get_flashed_messages(category_filter=["login"]) %}
+                        {% if errors %}
+                        {% for msg in errors %}
+                        <p class="error">{{ msg }}</p>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <button type="submit" class="btn btn-success" id="bttnSubmit">Login!</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOOTSTRAP'S: Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
