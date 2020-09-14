@@ -30,18 +30,18 @@
             </svg>
             {{ session['user_alias'] }}
         </span>
-     
-            <!-- =========== ADD BOOKS AND REVIEW ROUTE =========== -->
-            <form action="/addPage" method="get" class="form-inline justify-content-end">
-                <button class="btn" type="submit" style="color: white;">Add Book and Review</button>
-            </form>
 
-            <!-- =================== LOGOUT ROUTE ===================== -->
-            <form action="/logout" method="post" class="form-inline justify-content-end">
+        <!-- =========== ADD BOOKS AND REVIEW ROUTE =========== -->
+        <form action="/addPage" method="get" class="form-inline justify-content-end">
+            <button class="btn" type="submit" style="color: white;">Add Book and Review</button>
+        </form>
 
-                <button class="btn" type="submit" style="color: white;">log out</button>
-            </form>
-      
+        <!-- =================== LOGOUT ROUTE ===================== -->
+        <form action="/logout" method="post" class="form-inline justify-content-end">
+
+            <button class="btn" type="submit" style="color: white;">log out</button>
+        </form>
+
     </nav>
 
     <!-- =================================================================================================== -->
@@ -62,13 +62,19 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <input type="hidden" name="userID" value="{{ review.users_id }}">
-
-                                <!-- book title: link to book's page -->
                                 <h5 class="card-title">
-                                    <a href="#" class="card-link">
-                                        {{ review.title }}
-                                    </a>
+
+                                    <!-- form used for book title link -->
+                                    <form action="/get_book_review" method="post">
+                                        <input type="hidden" name="book_id" value="{{ review.book_id }}">
+
+                                        <!-- book title: link to book's page -->
+                                        <button type="submit" class="btn btn-link">
+                                            {{ review.title }}
+                                        </button>
+
+                                    </form>
+
                                 </h5>
 
                                 <div class="row">
@@ -76,24 +82,31 @@
 
                                         <!-- rating -->
                                         <h6 class="card-text">
+
                                             Rating: {{ review.rating }}
 
                                         </h6>
 
                                         <!-- most recent comment: username is a link -->
                                         <h5 class="card-text">
-                                            <a href="#" class="card-link">    {{ review.alias }}   </a> said: {{ review.content }}
+
+                                            <button type="submit" class="btn btn-link">
+                                                {{ review.alias }}
+                                            </button>
+                                            said: {{ review.content }}
+
+                                            <input type="hidden" name="userID" value="{{ review.users_id }}">
 
                                         </h5>
 
                                         <!-- comment's timestamp  -->
                                         <h6 class="card-subtitle mb-2 text-muted">
+
                                             posted @ {{ review.updated_at }}
 
                                         </h6>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -113,9 +126,7 @@
                         <div data-spy="scroll" class="scrollspy list-group">
 
                             <!-- LOOP THROUGH ALL BOOKS WITH REVIEWS -->
-                            <a class="list-group-item" href="#">
-
-                            </a>
+                            <button type="submit" class="btn btn-link">Link</button>
 
                         </div>
 

@@ -219,21 +219,35 @@ def addReview():
 def booksPage():
     user_id= session['user_id']
 
+    # reviews join users, join books, join authors
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM reviews LEFT JOIN users ON reviews.user_id= users.id JOIN books ON reviews.book_id = books.id JOIN authors ON books.author_id= authors.id ORDER BY reviews.id DESC LIMIT 3;"
-    results= mysql.query_db(query)
-
-    print("------------------------------")
-    print(results)
-
+    results = mysql.query_db(query)
 
     return render_template('books.html', results = results)
 
 
 # ====================================================
-#           
+#     /get_book_review: bookreview.html
+# use hidden input to get all data for specific book
 # ====================================================
+@app.route('/get_book_review', methods=['POST', 'GET'])
+def getBookReview():
+    user_id = session['user_id']
 
+
+
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM books LEFT JOIN authors ON books.author_id = authors.id LEFT JOIN reviews ON books.id=reviews.book_id JOIN users ON reviews.user_id=users.id WHERE books.id = %(bookID)s;"
+    data = {
+        'bookID': request.form['book_id']
+    }
+
+    results = mysql.query_db(query, data)
+
+    print("======================================")
+    print(results)
+    return redirect('/')
 
 
 # ====================================================
