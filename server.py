@@ -151,6 +151,27 @@ def addPage():
 def addReview():
     user_id = session['user_id']
 
+    # validation of all inputs 
+    if len(request.form['title'])<1:
+        flash("title cannot be empty", 'title')
+    
+    if len(request.form['new-author']) <1 and request.form['old-author'] == 0:
+        flash("author must be selected or entered", 'author')
+    
+    if len(request.form['content'])<1:
+        flash("review content cannot be empty", 'review')
+
+    if request.form['rating'] == 0:
+        flash("select a rating", 'rating')
+
+    # initiate any flash messages 
+    # --------------------------------------
+    if '_flashes' in session.keys():
+        return redirect("/addPage")
+
+
+
+
     # if the user typed in the input for new-author
     # then add this author to database
     if request.form['new-author']:
@@ -193,6 +214,8 @@ def addReview():
         }
 
         mysql.query_db(query,data)
+
+        flash("Your review has been posted", 'review-success')
 
 
     return redirect('/addPage')

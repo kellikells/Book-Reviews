@@ -50,6 +50,28 @@
 
     <div class="container">
 
+        <!-- ======== ALERT FOR REVIEW SUCCESS ======== -->
+
+        <div class="container" style="min-height:100%; width:80%">
+            {% with messages = get_flashed_messages(category_filter=["review-success"]) %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <h4 class="alert-heading">SUCCESS!</h4>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                {{message}}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            {% block body %}{% endblock %}
+        </div>
+
+
+
+
         <div class="row">
             <h3>
                 Add a new book title and a review:
@@ -68,6 +90,16 @@
 
                     <div class="form-group row">
                         <label for="title" class="col-sm-3 col-form-label">Book Title:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["title"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
                         <div class="col-sm-9">
                             <input name="title" type="text" class="form-control" id="title">
                         </div>
@@ -76,11 +108,22 @@
 
                     <!-- author  -->
 
+
                     Author
 
                     <!-- create new author  -->
                     <div class="form-group row">
                         <label for="new-author" class="col-sm-3 col-form-label">Add a new author:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["author"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
                         <div class="col-sm-9">
                             <input name="new-author" type="text" class="form-control" id="new-author">
                         </div>
@@ -90,13 +133,14 @@
                     <div class="form-group row">
                         <label for="old-author" class="col-sm-3 col-form-label">Choose from existing author:</label>
                         <div class="col-sm-9">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="old-author"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="old-author">
                                 Existing Author
                             </button>
 
                             <!-- LOOP THROUGH AUTHORS & CREATE DROPDOWN OPTIONS  -->
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" name="old-author"
+                                id="old-author">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
                                 <a class="dropdown-item" href="#">Something else here</a>
@@ -108,15 +152,35 @@
 
                     <!-- Review  -->
                     <div class="form-group row">
-                        <label for="review" class="col-sm-3 col-form-label">Review</label>
+                        <label for="content" class="col-sm-3 col-form-label">Review</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["review"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
                         <div class="col-sm-9">
-                            <textarea name="content" class="form-control" id="review" rows=" 3"></textarea>
+                            <textarea name="content" class="form-control" id="content" rows=" 3"></textarea>
                         </div>
                     </div>
 
                     <!-- rating  -->
                     <div class="form-group row">
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["rating"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
                         <div class="col-sm-2">
                             <select name="rating" class="custom-select" id="rating">
                                 <option selected>Choose...</option>
