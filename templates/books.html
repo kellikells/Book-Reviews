@@ -28,7 +28,7 @@
                 <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
-            {{ session['user_name'] }}
+            {{ session['user_alias'] }}
         </span>
 
         <!-- =========== ADD BOOKS AND REVIEW ROUTE =========== -->
@@ -54,7 +54,7 @@
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
-                {% for %}
+        
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -62,7 +62,10 @@
 
                                 <!-- book title: link to book's page -->
                                 <h5 class="card-title">
-                                    <a href="{{  }}" class="card-link"> {{ }} </a>
+                                    <a href="#" class="card-link"> 
+                                        
+
+                                    </a>
                                 </h5>
 
                                 <div class="row">
@@ -70,17 +73,22 @@
 
                                         <!-- rating -->
                                         <h5 class="card-text">
-                                            Rating: {{  }}
+                                            Rating: 
+                                            
                                         </h5>
 
                                         <!-- most recent comment: username is a link -->
                                         <h5 class="card-text">
-                                            <a href="{{  }}" class="card-link"> {{  }} </a>text text
+                                            <a href="#" class="card-link">  
+                                                
+                                            
+                                            </a>
                                         </h5>
 
                                         <!-- comment's timestamp  -->
                                         <h6 class="card-subtitle mb-2 text-muted">
-                                            Rating: {{  }}
+                                            Rating: 
+
                                         </h6>
                                     </div>
                                 </div>
@@ -90,7 +98,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+            
 
             </div>
 
@@ -105,7 +113,9 @@
                         <div data-spy="scroll" class="scrollspy list-group">
 
                             <!-- LOOP THROUGH ALL BOOKS WITH REVIEWS -->
-                            <a class="list-group-item" href="{{ }}">{{  }}</a>
+                            <a class="list-group-item" href="#"> 
+                                
+                            </a>
                             
                         </div>
 

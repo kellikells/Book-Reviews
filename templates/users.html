@@ -31,7 +31,7 @@
                 <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
-            {{ session['user_name'] }}
+            {{ session['user_alias'] }}
         </span>
 
 
@@ -61,28 +61,44 @@
         <!-- user alias -->
         <div class="row">
             <div class="col">
-                <h6>User Alias: {{  }} </h6>
+
+                <h6>User Alias:  
+
+                </h6>
+            
             </div>
         </div>
 
         <!-- user name  -->
         <div class="row">
             <div class="col">
-                <h6>Name: {{  }}</h6>
+
+                <h6>Name:   
+
+                </h6>
+
             </div>
         </div>
 
         <!-- user email  -->
         <div class="row">
             <div class="col">
-                <h6>Email: {{  }}</h6>
+
+                <h6>Email:   
+
+                </h6>
+
             </div>
         </div>
 
         <!-- user total reviews -->
         <div class="row">
             <div class="col">
-                <h6>Total Reviews: {{  }}</h6>
+
+                <h6>Total Reviews: 
+
+                </h6>
+
             </div>
         </div>
 
@@ -91,13 +107,15 @@
                 <h5>Posted Reviews on the following books:</h5>
 
                 <!-- LOOP for all reviews by user: each is a link -->
-                {% for review in reviews %}
+             
+                
                 <div class="row">
                     <div class="col">
-                        <a href="{{ }}" >{{ }}</a>
+                        <a href="#" ></a>
                     </div>
                 </div>
-                {% endfor %}
+               
+                
             </div>
         </div>
 

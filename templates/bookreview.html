@@ -30,7 +30,7 @@
                 <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
-            {{ session['user_name'] }}
+            {{ session['user_alias'] }}
         </span>
 
         <!-- =================== HOME ROUTE ===================== -->
@@ -50,12 +50,18 @@
 
         <!-- book title  -->
         <div class="row">
-            <h5> {{  }} </h5>
+            <h5> 
+                
+            
+            </h5>
         </div>
 
         <!-- author  -->
         <div class="row">
-            <h6> {{  }} </h6>
+            <h6>
+                
+            
+            </h6>
         </div>
 
         <div class="row">
@@ -65,26 +71,32 @@
                 <!-- LOOP THROUGH REVIEWS: -->
                 <!-- if it's user's review, add delete button -->
 
-                {% for looooop %}
+              
                 <div class="row">
                     <div class="col" style="margin-left: 20px; border-bottom: solid 2px black;">
                         <h6>
-                            Rating: {{  }}
+
+                            Rating: 
+
                         </h6>
 
                         <!-- user's alias( link) & comment -->
                         <p>
-                            {{ user's alias as a link}} says: {{ comment }}
+
+                            user's alias as a link says: comment 
+
                         </p>
 
                         <!-- comment timestamp  -->
                         <p>
-                            {{ timestampof comment }}
+
+                            timestampof comment 
+
                         </p>
 
                     </div>
                 </div>
-                {% endfor %}
+           
 
             </div>
 

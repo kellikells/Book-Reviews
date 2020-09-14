@@ -31,7 +31,7 @@
                 <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
             </svg>
-            {{ session['user_name'] }}
+            {{ session['user_alias'] }}
         </span>
 
         <!-- =================== HOME ROUTE ===================== -->
@@ -106,7 +106,6 @@
 
 
 
-
                     <!-- Review  -->
                     <div class="form-group row">
                         <label for="review" class="col-sm-3 col-form-label">Review</label>
@@ -119,7 +118,7 @@
                     <div class="form-group row">
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
                         <div class="col-sm-2">
-                            <select class="custom-select" id="rating">
+                            <select name="rating" class="custom-select" id="rating">
                                 <option selected>Choose...</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
