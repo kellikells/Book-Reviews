@@ -32,12 +32,16 @@ def index():
 @app.route('/register', methods=['POST'])
 def register():
 
-    # username validation
+    # name validation
     # --------------------------------------
-    if len(request.form['username']) < 2:
-        flash("first username must be at least 2 characters", 'username')
+    if len(request.form['name']) < 2:
+        flash("your name must be at least 2 characters", 'name')
 
-    
+    # alias validation: not blank
+    # --------------------------------------
+    if request.form['alias'] == False:
+        flash("Alias can't be empty", 'alias')
+
     # email validation
     # --------------------------------------
     if not EMAIL_REGEX.match(request.form['email']):
@@ -52,10 +56,6 @@ def register():
 
     if matchingEmail:
         flash("Email already exists", 'email')
-
-    # birthday validation: at least 18 yrs old
-    # --------------------------------------
-
     
     # password validation
     # --------------------------------------
@@ -95,7 +95,7 @@ def register():
         flash("Aww yeah, you successfully registered.  You can now log in using the same information you provided!", 'success')
 
         return redirect('/')
-    
+
 
 # ========================================================
 #                  LOGIN BUTTON ROUTE
@@ -116,9 +116,7 @@ def login():
             session['user_id'] = result[0]['id']
             session['user_name'] = result[0]['user_name']
     
-            # return redirect('/dashboard')
-            return redirect("/dashboard")
-
+            return redirect("/getReviews")
     
         # if username & password don't match
         # --------------------------------------
@@ -127,103 +125,105 @@ def login():
             return redirect("/")
 
 # =====================================================
-#                 DASHBOARD
+#                 get book reviews 
 # =====================================================
-@app.route('/dashboard', methods=['GET'])
-def dashboard():
-    user_id= session['user_id']
-    return render_template('dashboard.html', user_id = user_id)
-
-
-# =====================================================
-#                 DASHBOARD card : create
-# =====================================================
-
-@app.route('/create', methods=['GET'])
-def create():
-    user_id= session['user_id']
-    return render_template('create.html', user_id = user_id)
-
-
-
-# =====================================================
-#                 DASHBOARD card : review
-# =====================================================
-@app.route('/review', methods=['GET'])
-def review():
+@app.route('/getReviews', methods=['GET'])
+def getReviews():
     user_id= session['user_id']
 
-    mysql = connectToMySQL('recipesdb')
-    query = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
-    data = {
-        "user_id": user_id
-    }
-    result = mysql.query_db(query, data)
 
-    print("***** RESULT:", result)
-
-    return render_template('review.html', user_id = user_id, recipes = result)
+    return render_template('books.html', user_id = user_id)
 
 
-# =====================================================
-#               button ROUTE: /createRecipe
-# =====================================================
-@app.route('/createRecipe', methods=['POST', 'GET'])
-def createRecipe():
-    user_id = session['user_id']
+# # =====================================================
+# #                 DASHBOARD card : create
+# # =====================================================
 
-    mysql = connectToMySQL('recipesdb')
-    query = "INSERT INTO recipes (name, description, instructions, cook_time, created_at, updated_at, user_id) VALUES (%(name)s, %(description)s, %(instructions)s, %(cook_time)s, NOW(), NOW(), %(user_id)s);"
-    data = {
-        "name": request.form['recipeName'],
-        "description": request.form['description'],
-        "instructions": request.form['instructions'],
-        "cook_time": request.form['cook_time'],
-        "user_id": user_id
-    }
-
-    mysql.query_db(query, data)
-
-    flash("YOU CREATED A RECIPE, HOPE IT'S GOOD!", 'success')
-
-    return redirect('/create')
+# @app.route('/create', methods=['GET'])
+# def create():
+#     user_id= session['user_id']
+#     return render_template('create.html', user_id = user_id)
 
 
-# =====================================================
-#                 DELETE A RECIPE
-# =====================================================
-@app.route('/delete', methods=['POST'])
-def delete():
-    mysql = connectToMySQL('recipesdb')
-    query = "DELETE FROM recipes WHERE (id = %(id)s);"
-    data = {
-        'id': request.form['recipeID']
-    }
+
+# # =====================================================
+# #                 DASHBOARD card : review
+# # =====================================================
+# @app.route('/review', methods=['GET'])
+# def review():
+#     user_id= session['user_id']
+
+#     mysql = connectToMySQL('recipesdb')
+#     query = "SELECT * FROM recipes WHERE user_id = %(user_id)s;"
+#     data = {
+#         "user_id": user_id
+#     }
+#     result = mysql.query_db(query, data)
+
+#     print("***** RESULT:", result)
+
+#     return render_template('review.html', user_id = user_id, recipes = result)
+
+
+# # =====================================================
+# #               button ROUTE: /createRecipe
+# # =====================================================
+# @app.route('/createRecipe', methods=['POST', 'GET'])
+# def createRecipe():
+#     user_id = session['user_id']
+
+#     mysql = connectToMySQL('recipesdb')
+#     query = "INSERT INTO recipes (name, description, instructions, cook_time, created_at, updated_at, user_id) VALUES (%(name)s, %(description)s, %(instructions)s, %(cook_time)s, NOW(), NOW(), %(user_id)s);"
+#     data = {
+#         "name": request.form['recipeName'],
+#         "description": request.form['description'],
+#         "instructions": request.form['instructions'],
+#         "cook_time": request.form['cook_time'],
+#         "user_id": user_id
+#     }
+
+#     mysql.query_db(query, data)
+
+#     flash("YOU CREATED A RECIPE, HOPE IT'S GOOD!", 'success')
+
+#     return redirect('/create')
+
+
+# # =====================================================
+# #                 DELETE A RECIPE
+# # =====================================================
+# @app.route('/delete', methods=['POST'])
+# def delete():
+#     mysql = connectToMySQL('recipesdb')
+#     query = "DELETE FROM recipes WHERE (id = %(id)s);"
+#     data = {
+#         'id': request.form['recipeID']
+#     }
     
-    mysql.query_db(query, data)
+#     mysql.query_db(query, data)
 
-    return redirect('/review')
+#     return redirect('/review')
 
 
 
-# =====================================================
-#                 RECIPE INSTRUCTIONS
-# =====================================================
-@app.route('/instructions', methods=['POST'])
-def instructions():
-    user_id = session['user_id']
+# # =====================================================
+# #                 RECIPE INSTRUCTIONS
+# # =====================================================
+# @app.route('/instructions', methods=['POST'])
+# def instructions():
+#     user_id = session['user_id']
 
-    mysql = connectToMySQL('recipesdb')
-    query = "SELECT id, name, description, instructions, cook_time FROM recipes WHERE (recipes.id = %(id)s);"
-    data = {
-        'id': request.form['recipeID']
-    }
+#     mysql = connectToMySQL('recipesdb')
+#     query = "SELECT id, name, description, instructions, cook_time FROM recipes WHERE (recipes.id = %(id)s);"
+#     data = {
+#         'id': request.form['recipeID']
+#     }
 
-    result = mysql.query_db(query, data)
+#     result = mysql.query_db(query, data)
 
-    print('***** INSTRUCTIONS RESULT:', result)
+#     print('***** INSTRUCTIONS RESULT:', result)
 
-    return render_template('instructions.html', recipe = result)
+#     return render_template('instructions.html', recipe = result)
 
 
 # ====================================================

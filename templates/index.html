@@ -55,11 +55,11 @@
                 <h2>Register here!</h2>
                 <form action="/register" method="post">
 
-                    <!-- username: letters only, at least 2 characters -->
+                    <!-- name: letters only, at least 2 characters -->
                     <div class="form-group">
-                        <label class="labels" for="username">User name:</label>
+                        <label class="labels" for="name">Name:</label>
                         <div>
-                            {% with errors = get_flashed_messages(category_filter=["username"]) %}
+                            {% with errors = get_flashed_messages(category_filter=["name"]) %}
                             {% if errors %}
                             {% for msg in errors %}
                             <p class="error">{{ msg }}</p>
@@ -68,7 +68,23 @@
                             {% endwith %}
                         </div>
 
-                        <input name="username" type="text" class="form-control" id="username">
+                        <input name="name" type="text" class="form-control" id="name">
+                    </div>
+
+                    <!-- alias: not blank -->
+                    <div class="form-group">
+                        <label class="labels" for="alias">Alias:</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["alias"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+
+                        <input name="alias" type="text" class="form-control" id="alias">
                     </div>
 
 
@@ -89,21 +105,6 @@
                         <input name="email" type="text" class="form-control" id="email">
                     </div>
 
-                    <!-- birthday: at least 18 years old  -->
-                    <div class="form-group">
-                        <label class="labels" for="birthday">Birthday:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["birthday"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
-                        </div>
-
-                        <input type="date" id="birthday" name="birthday">
-                    </div>
 
                     <!-- password: at least 8 characters -->
                     <div class="form-group">
