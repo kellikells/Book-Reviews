@@ -132,7 +132,11 @@ def login():
 def addPage():
     user_id= session['user_id']
 
-    return render_template('add.html')
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM authors;"
+    author_results = mysql.query_db(query)
+
+    return render_template('add.html', author_results = author_results)
 
 
 # ====================================================
@@ -242,7 +246,12 @@ def booksPage():
     query = "SELECT * FROM reviews LEFT JOIN users ON reviews.user_id= users.id JOIN books ON reviews.book_id = books.id JOIN authors ON books.author_id= authors.id ORDER BY reviews.id DESC LIMIT 3;"
     results = mysql.query_db(query)
 
-    return render_template('books.html', results = results)
+    # getting all books in database to list as a link
+    mysql = connectToMySQL('booksdb')
+    query = "SELECT * FROM books;"
+    book_results = mysql.query_db(query)
+
+    return render_template('books.html', results = results, book_results = book_results)
 
 
 # ====================================================

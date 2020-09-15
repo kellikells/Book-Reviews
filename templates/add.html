@@ -127,22 +127,32 @@
                         </div>
                     </div>
 
-
+                    <!-- old-author: drop down of existing authors in database -->
                     <div class="form-group row">
-                        <label for="old-author" class="col-sm-3 col-form-label">Choose from existing author:</label>
-                        <div class="col-sm-9">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="old-author"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="old-author">
-                                Existing Author
-                            </button>
+                        <label for="old-author" class="col-sm-3 col-form-label">Existing Author</label>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["old-author"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
 
-                            <!-- LOOP THROUGH AUTHORS & CREATE DROPDOWN OPTIONS  -->
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" name="old-author"
-                                id="old-author">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
+                        <div class="col-sm-2">
+                            <select name="old-author" class="custom-select" id="old-author">
+
+                                <!-- LOOP THROUGH AUTHORS TABLE -->
+                                <!-- ============================================== -->
+                                <option selected>Choose...</option>
+
+                                {% for author in author_results %}
+                                
+                                <option value="{{ author.id }}">{{ author.author_name }} </option>
+                          
+                                {% endfor %}
+                            </select>
                         </div>
                     </div>
 

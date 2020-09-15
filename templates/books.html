@@ -47,7 +47,6 @@
     <!-- =================================================================================================== -->
 
     <div class="container">
-
         <div class="row">
 
             <!-- ------------------ Left column -------------------- -->
@@ -56,67 +55,66 @@
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
-
                 {% for review in results %}
                 <div class="row">
                     <div class="col">
                         <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">
-
+                            <div class="card-header">
+                              
                                     <!-- form used for book title link -->
                                     <form action="/get_book_review" method="post">
                                         <input type="hidden" name="book_id" value="{{ review.book_id }}">
 
                                         <!-- book title: link to book's page -->
                                         <button type="submit" class="btn btn-link">
-                                            {{ review.title }}
+                                            <h5>{{ review.title }}</h5>
                                         </button>
 
                                     </form>
-
-                                </h5>
-
+                               
+                            </div>
+                            <div class="card-body">
                                 <div class="row">
-                                    <div class="col" style="margin-left: 30px;">
 
-                                        <!-- rating -->
-                                        <h6 class="card-text">
+                                    <!-- rating -->
+                                    <h5 class="card-title">
 
-                                            Rating: {{ review.rating }}
+                                        Rating: {{ review.rating }}
+                                    </h5>
 
-                                        </h6>
+                                </div>
+                                <div class="row">
 
-                                        <!-- most recent comment: username is a link -->
-                                        <h5 class="card-text">
+                                    <!--username is a link -->
+                                    <p class="card-text">
 
-                                            <!-- form routes to user page of review, using hidden input value -->
-                                            <form action="/getUser" method="post">
+                                        <!-- form routes to user page of review, using hidden input value -->
+                                    <form action="/getUser" method="post">
 
-                                                <input type="hidden" name="userID" value="{{ review.user_id }}">
+                                        <input type="hidden" name="userID" value="{{ review.user_id }}">
 
-                                                <button type="submit" class="btn btn-link">{{ review.alias }}</button> said: {{ review.content }}
+                                        <button type="submit" class="btn btn-link">{{ review.alias }}</button>
+                                        said: {{ review.content }}
 
-                                            </form>
+                                    </form>
+                                    </p>
 
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <!-- comment's timestamp  -->
 
-                                        </h5>
+                                    posted @ {{ review.updated_at }}
 
-                                        <!-- comment's timestamp  -->
-                                        <h6 class="card-subtitle mb-2 text-muted">
-
-                                            posted @ {{ review.updated_at }}
-
-                                        </h6>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
-
             </div>
+
+
+
 
 
             <!-- ------------------ Right column -------------------- -->
@@ -124,13 +122,26 @@
                 <h5>Other Books with Reviews:</h5>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col" >
 
-                        <div data-spy="scroll" class="scrollspy list-group">
+                        <div scrolling="yes" >
 
-                            <!-- LOOP THROUGH ALL BOOKS WITH REVIEWS -->
-                            <button type="submit" class="btn btn-link">Link</button>
 
+                            <!-- LOOP FOR ALL BOOKS IN DATABASE  -->
+                            {% for book in book_results %}
+
+                            <!-- form used for book title link -->
+                            <form action="/get_book_review" method="post">
+                                <input type="hidden" name="book_id" value="{{ book.id }}">
+
+                                <!-- book title: link to book's page -->
+                                <button type="submit" class="btn btn-link">
+                                    {{ book.title }}
+                                </button>
+
+                            </form>
+
+                            {% endfor %}
                         </div>
 
                     </div>
