@@ -109,6 +109,15 @@
                     <h4>Add a Review:</h4>
                 </div>
 
+                <!-- flash message  -->
+                <!-- ------------------------------ -->
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
 
                 <!-- ADD REVIEW ROUTE  -->
                 <form action="/additionalReview" method="post">
@@ -127,7 +136,7 @@
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
                         <div class="col-sm-5">
                             <select name="rating" class="custom-select" id="rating">
-                                <option selected>Choose...</option>
+                                <option selected>Choose</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>

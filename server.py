@@ -147,18 +147,19 @@ def addPage():
 def addReview():
     user_id = session['user_id']
 
+
     # validation of all inputs 
-    if len(request.form['title'])<1:
+    if len(request.form['title']) < 1:
         flash("title cannot be empty", 'title')
     
-    # if len(request.form['new-author']) <1 and request.form['old-author'] == 0:
-    #     flash("author must be selected or entered", 'author')
+    if len(request.form['new-author']) < 1 and request.form['old-author'] == "Choose":
+        flash("author must be selected", 'author')
     
-    if len(request.form['content'])<1:
+    if len(request.form['content']) < 1:
         flash("review content cannot be empty", 'review')
 
-    # if request.form['rating'] == 0:
-    #     flash("select a rating", 'rating')
+    if request.form['rating'] == "Choose":
+        flash("select a rating", 'rating')
 
     # initiate any flash messages 
     # --------------------------------------
@@ -180,8 +181,6 @@ def addReview():
         }
         # saving author id
         new_author = mysql.query_db(query,data)
-        print("------------------------")
-        print("NEW AUTHOR:", new_author)
 
         # ---------  add book to database
         # =====================================
@@ -194,8 +193,6 @@ def addReview():
 
         # saving book id
         new_book = mysql.query_db(query,data)
-        print("------------------------")
-        print("BOOK ADDED", new_book)
 
         # ---------  add review to database
         # =====================================
@@ -222,18 +219,31 @@ def addReview():
 def additionalReview():
     user_id = session['user_id']
 
-    mysql = connectToMySQL('booksdb')
-    query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
-    data = {
-        'book_id': request.form['book_id'],
-        'user_id': user_id,
-        'content': request.form['content'],
-        'rating': request.form['rating']
-    }
-    mysql.query_db(query,data)
+    
+    if len(request.form['content']) < 1:
+        flash("review content cannot be empty", 'review')
+
+    if request.form['rating'] == "Choose":
+        flash("select a rating", 'rating')
+
+    # initiate any flash messages 
+    # --------------------------------------
+    # if '_flashes' in session.keys():
+    #     return redirect("/addPage")
+
+    else:
+        mysql = connectToMySQL('booksdb')
+        query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
+        data = {
+            'book_id': request.form['book_id'],
+            'user_id': user_id,
+            'content': request.form['content'],
+            'rating': request.form['rating']
+        }
+        mysql.query_db(query,data)
 
 
-    return redirect('/booksPage')
+        return redirect('/booksPage')
 # ====================================================
 #           /booksPage: books.html (home)
 # ====================================================
@@ -261,7 +271,6 @@ def booksPage():
 @app.route('/get_book_review', methods=['POST', 'GET'])
 def getBookReview():
     user_id = session['user_id']
-    
 
     # getting book title & author 
     mysql = connectToMySQL('booksdb')
@@ -271,7 +280,7 @@ def getBookReview():
     }
     results = mysql.query_db(query, data)
 
-    # getting reviews for the boook
+    # getting reviews for the book
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM reviews JOIN users ON reviews.user_id = users.id WHERE book_id = %(bookID)s;"
     data = {
@@ -315,8 +324,7 @@ def getUser():
     }
     count_results = mysql.query_db(query, data)
 
-    print("------------------------")
-    print(review_results)
+
 
     return render_template('users.html', user_results = user_results, review_results = review_results, count_results = count_results)
 

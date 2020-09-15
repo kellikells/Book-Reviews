@@ -60,49 +60,42 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
-                              
-                                    <!-- form used for book title link -->
-                                    <form action="/get_book_review" method="post">
-                                        <input type="hidden" name="book_id" value="{{ review.book_id }}">
 
-                                        <!-- book title: link to book's page -->
-                                        <button type="submit" class="btn btn-link">
-                                            <h5>{{ review.title }}</h5>
-                                        </button>
+                                <!-- form used for book title link -->
+                                <form action="/get_book_review" method="post">
+                                    <input type="hidden" name="book_id" value="{{ review.book_id }}">
 
-                                    </form>
-                               
+                                    <!-- book title: link to book's page -->
+                                    <button type="submit" class="btn btn-link">
+                                        <h5>{{ review.title }}</h5>
+                                    </button>
+
+                                </form>
+
                             </div>
                             <div class="card-body">
-                                <div class="row">
 
-                                    <!-- rating -->
-                                    <h5 class="card-title">
+                                <!-- rating -->
+                                <p>
+                                    Rating: {{ review.rating }}
+                                </p>
 
-                                        Rating: {{ review.rating }}
-                                    </h5>
+                                <!--username is a link -->
+                                <p>
+                                    <!-- form routes to user page of review, using hidden input value -->
+                                <form action="/getUser" method="post">
 
-                                </div>
-                                <div class="row">
+                                    <input type="hidden" name="userID" value="{{ review.user_id }}">
 
-                                    <!--username is a link -->
-                                    <p class="card-text">
+                                    <button type="submit" class="btn btn-link">{{ review.alias }}</button>
+                                    said: {{ review.content }}
 
-                                        <!-- form routes to user page of review, using hidden input value -->
-                                    <form action="/getUser" method="post">
+                                </form>
+                                </p>
 
-                                        <input type="hidden" name="userID" value="{{ review.user_id }}">
-
-                                        <button type="submit" class="btn btn-link">{{ review.alias }}</button>
-                                        said: {{ review.content }}
-
-                                    </form>
-                                    </p>
-
-                                </div>
                                 <div class="card-footer text-muted">
-                                    <!-- comment's timestamp  -->
 
+                                    <!-- comment's timestamp  -->
                                     posted @ {{ review.updated_at }}
 
                                 </div>
@@ -122,9 +115,9 @@
                 <h5>Other Books with Reviews:</h5>
 
                 <div class="row">
-                    <div class="col" >
+                    <div class="col">
 
-                        <div scrolling="yes" >
+                        <div scrolling="yes">
 
 
                             <!-- LOOP FOR ALL BOOKS IN DATABASE  -->

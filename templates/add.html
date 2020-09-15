@@ -12,8 +12,6 @@
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
 
-
-
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -87,8 +85,10 @@
                     <!-- title  -->
 
                     <div class="form-group row">
+
+
                         <label for="title" class="col-sm-3 col-form-label">Book Title:</label>
-                        <div>
+                        <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["title"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -97,6 +97,7 @@
                             {% endif %}
                             {% endwith %}
                         </div>
+
 
                         <div class="col-sm-9">
                             <input name="title" type="text" class="form-control" id="title">
@@ -112,7 +113,7 @@
                     <!-- create new author  -->
                     <div class="form-group row">
                         <label for="new-author" class="col-sm-3 col-form-label">Add a new author:</label>
-                        <div>
+                        <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["author"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -130,27 +131,19 @@
                     <!-- old-author: drop down of existing authors in database -->
                     <div class="form-group row">
                         <label for="old-author" class="col-sm-3 col-form-label">Existing Author</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["old-author"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
-                        </div>
+        
 
                         <div class="col-sm-2">
                             <select name="old-author" class="custom-select" id="old-author">
 
                                 <!-- LOOP THROUGH AUTHORS TABLE -->
                                 <!-- ============================================== -->
-                                <option selected>Choose...</option>
+                                <option selected>Choose</option>
 
                                 {% for author in author_results %}
-                                
+
                                 <option value="{{ author.id }}">{{ author.author_name }} </option>
-                          
+
                                 {% endfor %}
                             </select>
                         </div>
@@ -161,7 +154,7 @@
                     <!-- Review  -->
                     <div class="form-group row">
                         <label for="content" class="col-sm-3 col-form-label">Review</label>
-                        <div>
+                        <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["review"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -179,7 +172,7 @@
                     <!-- rating  -->
                     <div class="form-group row">
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
-                        <div>
+                        <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["rating"]) %}
                             {% if errors %}
                             {% for msg in errors %}
@@ -191,7 +184,7 @@
 
                         <div class="col-sm-2">
                             <select name="rating" class="custom-select" id="rating">
-                                <option selected>Choose...</option>
+                                <option selected>Choose</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
