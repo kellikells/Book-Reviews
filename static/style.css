@@ -16,3 +16,7 @@ a {
 body {
     font: Helvetica, sans-serif;
 }
+
+.addBookLabel {
+    font-weight: bold;
+}

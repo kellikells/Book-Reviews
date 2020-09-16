@@ -214,7 +214,7 @@ def addReview():
     
 
     # if using dropdown for author selection 
-    if request.form['old-author']:
+    elif request.form['old-author']:
         # ---------  add book to database
         # =====================================
         mysql = connectToMySQL('booksdb')

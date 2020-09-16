@@ -65,10 +65,10 @@
             {% block body %}{% endblock %}
         </div>
 
-        <div class="row">
-            <h3>
-                Add a new book title and a review:
-            </h3>
+        <div class="row justify-content-center" style="margin-bottom: 25px;">
+            <h2 style="font-weight:bold;">
+                Add A Book & Your Review
+            </h2>
         </div>
         <div class="row">
             <div class="col">
@@ -79,7 +79,7 @@
 
                     <div class="form-group row">
 
-                        <label for="title" class="col-sm-3 col-form-label">Book Title:</label>
+                        <label style="font-weight: bold; font-size: 1.5rem;" for="title" class="col-sm-3 col-form-label">Book Title:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["title"]) %}
                             {% if errors %}
@@ -96,11 +96,13 @@
                         </div>
                     </div>
 
-                    Author
+                    <label  style="font-weight: bold; font-size: 1.5rem;" >
+                        Author:
+                    </label>
 
                     <!-- create new author  -->
-                    <div class="form-group row">
-                        <label for="new-author" class="col-sm-3 col-form-label">Add a new author:</label>
+                    <div style="margin-left: 10px;" class="form-group row">
+                        <label style="font-size: 1.25rem;" for="new-author" class="col-sm-3 col-form-label ">Add a new author:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["author"]) %}
                             {% if errors %}
@@ -117,8 +119,8 @@
                     </div>
 
                     <!-- old-author: drop down of existing authors in database -->
-                    <div class="form-group row">
-                        <label for="old-author" class="col-sm-3 col-form-label">Existing Author</label>
+                    <div style="margin-left: 10px;"class="form-group row">
+                        <label style="font-size: 1.25rem;" for="old-author" class="col-sm-3 col-form-label">Existing Author:</label>
 
 
                         <div class="col-sm-2">
@@ -139,7 +141,7 @@
 
                     <!-- Review  -->
                     <div class="form-group row">
-                        <label for="content" class="col-sm-3 col-form-label">Review</label>
+                        <label  style="font-weight: bold; font-size: 1.5rem;"  for="content" class="col-sm-3 col-form-label">Review:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["review"]) %}
                             {% if errors %}
@@ -157,7 +159,7 @@
 
                     <!-- rating  -->
                     <div class="form-group row">
-                        <label for="rating" class="col-sm-3 col-form-label">Rating</label>
+                        <label style="font-weight: bold; font-size: 1.5rem;"  for="rating" class="col-sm-3 col-form-label">Rating:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["rating"]) %}
                             {% if errors %}
