@@ -215,35 +215,36 @@ def addReview():
 # ====================================================
 #           ADD REVIEW FROM bookreview.html
 # ====================================================
-@app.route('/additionalReview', methods=['POST'])
-def additionalReview():
+@app.route('/additionalReview/<bookId>', methods=['POST'])
+def additionalReview(bookId):
     user_id = session['user_id']
 
     
-    if len(request.form['content']) < 1:
-        flash("review content cannot be empty", 'review')
+    # if len(request.form['content']) < 1:
+    #     flash("review content cannot be empty", 'review')
 
-    if request.form['rating'] == "Choose":
-        flash("select a rating", 'rating')
+    # if request.form['rating'] == "Choose":
+    #     flash("select a rating", 'rating')
 
     # initiate any flash messages 
     # --------------------------------------
     # if '_flashes' in session.keys():
     #     return redirect("/addPage")
 
-    else:
-        mysql = connectToMySQL('booksdb')
-        query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
-        data = {
-            'book_id': request.form['book_id'],
-            'user_id': user_id,
-            'content': request.form['content'],
-            'rating': request.form['rating']
-        }
-        mysql.query_db(query,data)
+    
+    mysql = connectToMySQL('booksdb')
+    query = "INSERT INTO reviews (book_id, user_id, content, rating, created_at, updated_at) VALUES (%(book_id)s, %(user_id)s, %(content)s, %(rating)s, NOW(), NOW());"
+    data = {
+        'book_id': bookId,
+        'user_id': user_id,
+        'content': request.form['content'],
+        'rating': request.form['rating']
+    }
+    mysql.query_db(query,data)
 
+    return redirect('/get_book_review/'+ bookId)
 
-        return redirect('/booksPage')
+    # return redirect('/booksPage')
 # ====================================================
 #           /booksPage: books.html (home)
 # ====================================================
@@ -274,7 +275,7 @@ def getBookReview(bookId):
 
     # getting book title & author 
     mysql = connectToMySQL('booksdb')
-    query = "SELECT author_name, title FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = %(bookID)s;"
+    query = "SELECT books.id, author_name, title FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = %(bookID)s;"
     data = {
         # 'bookID': request.form['book_id']
         'bookID': bookId
@@ -288,8 +289,9 @@ def getBookReview(bookId):
         'bookID': bookId
     }
     review_results = mysql.query_db(query, data)
-
-
+    
+    print("======================================")
+    print(results)
     return render_template('bookreview.html', results = results, review_results= review_results)
 
 

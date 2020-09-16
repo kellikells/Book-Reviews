@@ -49,10 +49,12 @@
 
     <div style="height: 30px; background-color:white; margin-bottom: 30px;">
     </div>
+
     {% for book in results %}
     <div class="container">
 
         <!---------------------------- book title  ---------------------------->
+
         <div class="row">
             <h5>
                 {{ book.title|capitalize }}
@@ -102,22 +104,15 @@
                     <h4>Add a Review:</h4>
                 </div>
 
-                <!-- flash message  -->
-                <!-- ------------------------------ -->
-                {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                {% for message in messages %}
-                <p>{{message}}</p>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
+                WHERE IS THIS::::
+                <h1> {{ book.id }}  </h1>
 
                 <!-- ADD REVIEW ROUTE  -->
-                <form action="/additionalReview" method="post">
+                <form action="/additionalReview/{{ book.id }}" method="post">
 
                     <!-- book_id & author_id data for adding review -->
-                    <input type="hidden" name="book_id" value="{{book.id}}">
-                    <input type="hidden" name="authorID" value="{{book.author_id}}">
+                    <!-- <input type="hidden" name="book_id" value="{{book.id}}">
+                    <input type="hidden" name="authorID" value="{{book.author_id}}"> -->
 
                     <div class="form-group">
                         <textarea name="content" class="form-control" id="content" rows="3"></textarea>
@@ -158,4 +153,5 @@
         crossorigin="anonymous"></script>
 
 </body>
+
 </html>
