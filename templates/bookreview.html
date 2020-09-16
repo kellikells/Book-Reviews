@@ -58,14 +58,14 @@
         <!---------------------------- book title  ---------------------------->
         <div class="row">
             <h5>
-                {{ book.title }}
+                {{ book.title|capitalize }}
             </h5>
         </div>
         <div class="row">
 
             <!-- author  -->
             <h6>
-                {{ book.author_name }}
+                {{ book.author_name|capitalize }}
             </h6>
 
         </div>
@@ -91,7 +91,7 @@
 
                                 <input type="hidden" name="userID" value="{{ review.user_id }}">
                                 <!-- user's alias( link) & comment -->
-                                <button type="submit" class="btn btn-link">{{ review.alias }}</button> says:
+                                <button type="submit" class="btn btn-link">{{ review.alias|upper }} :</button>
                                 {{ review.content }}
 
                             </form>
@@ -161,7 +161,6 @@
 
 
             </div>
-
         </div>
     </div>
     {% endfor %}

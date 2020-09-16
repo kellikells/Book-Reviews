@@ -53,13 +53,13 @@
         <div class="row">
 
             <!-- ------------------ Left column -------------------- -->
-            <div class="col">
-                <h5>Recent Book Reviews:</h5>
+            <div class="col-7">
+                <h1 style ="margin-bottom: 20px;">Recent Book Reviews:</h1>
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
                 {% for review in results %}
-                <div class="row">
+                <div class="row" style="margin-bottom: 20px;">
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
@@ -70,7 +70,7 @@
 
                                     <!-- book title: link to book's page -->
                                     <button type="submit" class="btn btn-link">
-                                        <h5>{{ review.title }}</h5>
+                                        <h4>{{ review.title|capitalize }}</h4>
                                     </button>
 
                                 </form>
@@ -90,8 +90,8 @@
 
                                     <input type="hidden" name="userID" value="{{ review.user_id }}">
 
-                                    <button type="submit" class="btn btn-link">{{ review.alias }}</button>
-                                    said: {{ review.content }}
+                                    <button type="submit" class="btn btn-link">{{ review.alias|upper }}:</button>
+                                    {{ review.content }}
 
                                 </form>
                                 </p>
@@ -114,11 +114,11 @@
 
 
             <!-- ------------------ Right column -------------------- -->
-            <div class="col">
-                <h5>Other Books with Reviews:</h5>
+            <div class="col" style="text-align: center;">
+                <h3 style="margin-top: 50px; margin-bottom: 30px;">Other Books with Reviews:</h3>
 
                 <div class="row">
-                    <div class="col">
+                    <div class="col" style="background-color: #fff">
 
                         <div scrolling="yes">
 
