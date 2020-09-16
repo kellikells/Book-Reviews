@@ -53,6 +53,9 @@
     {% for book in results %}
     <div class="container">
 
+
+
+
         <!---------------------------- book title  ---------------------------->
 
         <div class="row">
@@ -104,15 +107,9 @@
                     <h4>Add a Review:</h4>
                 </div>
 
-                WHERE IS THIS::::
-                <h1> {{ book.id }}  </h1>
-
                 <!-- ADD REVIEW ROUTE  -->
                 <form action="/additionalReview/{{ book.id }}" method="post">
 
-                    <!-- book_id & author_id data for adding review -->
-                    <!-- <input type="hidden" name="book_id" value="{{book.id}}">
-                    <input type="hidden" name="authorID" value="{{book.author_id}}"> -->
 
                     <div class="form-group">
                         <textarea name="content" class="form-control" id="content" rows="3"></textarea>
@@ -136,6 +133,16 @@
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </div>
                 </form>
+
+                <!-- flash message  -->
+                <!-- ------------------------------ -->
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                <p style="color: red;">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
 
             </div>
         </div>
