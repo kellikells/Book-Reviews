@@ -47,13 +47,10 @@
 
     <!-- =================================================================================================== -->
 
-
     <div style="height: 30px; background-color:white; margin-bottom: 30px;">
-
     </div>
     {% for book in results %}
     <div class="container">
-
 
         <!---------------------------- book title  ---------------------------->
         <div class="row">
@@ -80,26 +77,19 @@
                 <div class="row">
                     <div class="col" style="margin-left: 20px; border-bottom: solid 2px black;">
 
-                        <h6>
-                            Rating: {{ review.rating }}
-                        </h6>
+                        <!-- rating -->
+                        <h6>Rating: {{ review.rating }}</h6>
 
                         <div>
-                            <a href="/getUser/{{ review.user_id }}">
+                            <!-- user alias as a link  -->
+                            <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }}</a>
 
-                                {{ review.alias|upper }}
-
-                            </a>
-
+                            <!-- review content -->
                             {{ review.content }}
-
                         </div>
 
                         <!-- comment timestamp  -->
-                        <p>
-                            {{ review.updated_at }}
-                        </p>
-
+                        <p> {{ review.updated_at }} </p>
                     </div>
                 </div>
                 {% endfor %}
@@ -133,7 +123,6 @@
                         <textarea name="content" class="form-control" id="content" rows="3"></textarea>
                     </div>
 
-
                     <!-- rating  -->
                     <div class="form-group row">
                         <label for="rating" class="col-sm-3 col-form-label">Rating</label>
@@ -147,15 +136,11 @@
                         </div>
                     </div>
 
-
                     <!-- submit button  -->
                     <div class="form-group row justify-content-end">
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </div>
-
                 </form>
-
-
 
             </div>
         </div>
@@ -163,11 +148,8 @@
     {% endfor %}
 
 
-
-
     <!-- BOOTSTRAP'S: Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -176,5 +158,4 @@
         crossorigin="anonymous"></script>
 
 </body>
-
 </html>

@@ -11,16 +11,11 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
-
-
-
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body style="background-color: #ced;">
-
-
 
     <!-- ================= NAV ======================== -->
     <nav id="navbar" class="navbar navbar-dark" style="background-color: #aa9;">
@@ -35,29 +30,23 @@
             {{ session['user_alias'] }}
         </span>
 
-
         <!-- =================== HOME ROUTE ===================== -->
         <form action="/booksPage" method="get" class="form-inline justify-content-end">
             <button class="btn" type="submit" style="color: white;">home</button>
         </form>
-
 
         <!-- ADD BOOKS AND REVIEW ROUTE  -->
         <form action="/addPage" method="get" class="form-inline justify-content-end">
             <button class="btn" type="submit" style="color: white;">Add Book and Review</button>
         </form>
 
-
         <!-- =================== LOGOUT ROUTE ===================== -->
         <form action="/logout" method="post" class="form-inline justify-content-end">
             <button class="btn" type="submit" style="color: white;">log out</button>
         </form>
-
     </nav>
-
     <!-- =================================================================================================== -->
     <div style="height: 30px; background-color:white; margin-bottom: 30px;">
-
     </div>
 
     <div class="container">
@@ -66,7 +55,6 @@
 
                 <!-- user alias -->
                 <h6>User Alias: {{ user_results[0].alias }}</h6>
-
             </div>
         </div>
 
@@ -75,7 +63,6 @@
 
                 <!-- user name  -->
                 <h6>Name: {{ user_results[0].name }}</h6>
-
             </div>
         </div>
 
@@ -84,7 +71,6 @@
 
                 <!-- user email  -->
                 <h6>Email: {{ user_results[0].email }} </h6>
-
             </div>
         </div>
 
@@ -93,7 +79,6 @@
 
                 <!-- user total reviews -->
                 <h6>Total Reviews: {{ count_results[0].count }}</h6>
-
             </div>
         </div>
 
@@ -102,20 +87,14 @@
                 <h5>Posted Reviews on the following books:</h5>
 
                 <!-- LOOP for all reviews by user: -->
-
                 {% for review in review_results %}
                 <div class="row">
                     <div class="col">
 
                         <!-- each review title is a link  -->
-    <a href="/get_book_review/{{ review.book_id }}">
-    
-        <h4>{{ review.title|capitalize }}</h4>
-    
-    </a>
-
-                        
-
+                        <a href="/get_book_review/{{ review.book_id }}">
+                            <h4>{{ review.title|capitalize }}</h4>
+                        </a>
                     </div>
                 </div>
                 {% endfor %}
@@ -124,27 +103,14 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
     <!-- BOOTSTRAP'S: Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

@@ -290,13 +290,6 @@ def getBookReview(bookId):
     review_results = mysql.query_db(query, data)
 
 
-    print('----------------------------------')
-    print(results)
-
-
-    print('----------------------------------')
-    print(review_results)
-
     return render_template('bookreview.html', results = results, review_results= review_results)
 
 
