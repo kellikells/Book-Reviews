@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, flash, jsonify
+from flask import Flask, render_template, redirect, request, session, flash, jsonify, url_for
 from flask_bcrypt import Bcrypt   
 from mysqlconnection import connectToMySQL
 from datetime import date, datetime
@@ -268,15 +268,16 @@ def booksPage():
 #     /get_book_review: bookreview.html
 # use hidden input to get all data for specific book
 # ====================================================
-@app.route('/get_book_review', methods=['POST', 'GET'])
-def getBookReview():
+@app.route('/get_book_review/<bookId>', methods=['POST', 'GET'])
+def getBookReview(bookId):
     user_id = session['user_id']
 
     # getting book title & author 
     mysql = connectToMySQL('booksdb')
     query = "SELECT author_name, title FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = %(bookID)s;"
     data = {
-        'bookID': request.form['book_id']
+        # 'bookID': request.form['book_id']
+        'bookID': bookId
     }
     results = mysql.query_db(query, data)
 
@@ -284,7 +285,7 @@ def getBookReview():
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM reviews JOIN users ON reviews.user_id = users.id WHERE book_id = %(bookID)s;"
     data = {
-        'bookID': request.form['book_id']
+        'bookID': bookId
     }
     review_results = mysql.query_db(query, data)
 
@@ -303,15 +304,15 @@ def getBookReview():
 # ====================================================
 #            /getUser: users.html
 # ====================================================
-@app.route('/getUser', methods=['POST', 'GET'])
-def getUser():
+@app.route('/getUser/<userId>', methods=['POST', 'GET'])
+def getUser(userId):
     user_id = session['user_id']
 
     # getting user data
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM users WHERE id = %(id)s;"
     data = {
-        'id': request.form['userID']
+        'id': userId
     }
     user_results = mysql.query_db(query, data)
 
@@ -320,7 +321,7 @@ def getUser():
     mysql = connectToMySQL('booksdb')
     query = "SELECT reviews.id,reviews.book_id,reviews.user_id,books.title FROM reviews JOIN books ON reviews.book_id=books.id WHERE reviews.user_id = %(user_id)s;"
     data = {
-        'user_id': request.form['userID']
+        'user_id': userId
     }
     review_results = mysql.query_db(query, data)
 
@@ -328,7 +329,7 @@ def getUser():
     mysql = connectToMySQL('booksdb')
     query = "SELECT COUNT(id) AS count FROM reviews WHERE reviews.user_id = %(user_id)s;"
     data = {
-        'user_id': request.form['userID']
+        'user_id': userId
     }
     count_results = mysql.query_db(query, data)
 

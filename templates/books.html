@@ -47,14 +47,14 @@
 
     <!-- =================================================================================================== -->
     <div style="height: 30px; background-color:white; margin-bottom: 30px;">
-    
+
     </div>
     <div class="container">
         <div class="row">
 
             <!-- ------------------ Left column -------------------- -->
             <div class="col-7">
-                <h1 style ="margin-bottom: 20px;">Recent Book Reviews:</h1>
+                <h1 style="margin-bottom: 20px;">Recent Book Reviews:</h1>
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
@@ -64,18 +64,16 @@
                         <div class="card">
                             <div class="card-header">
 
-                                <!-- form used for book title link -->
-                                <form action="/get_book_review" method="post">
-                                    <input type="hidden" name="book_id" value="{{ review.book_id }}">
+                    
 
-                                    <!-- book title: link to book's page -->
-                                    <button type="submit" class="btn btn-link">
-                                        <h4>{{ review.title|capitalize }}</h4>
-                                    </button>
+                                <a href="/get_book_review/{{ review.book_id }}">
 
-                                </form>
+                                    <h4>{{ review.title|capitalize }}</h4>
+
+                                </a>
 
                             </div>
+
                             <div class="card-body">
 
                                 <!-- rating -->
@@ -83,18 +81,17 @@
                                     Rating: {{ review.rating }}
                                 </p>
 
-                                <!--username is a link -->
-                                <p>
-                                    <!-- form routes to user page of review, using hidden input value -->
-                                <form action="/getUser" method="post">
+                           
+                                <a href="/getUser/{{ review.user_id }}">
 
-                                    <input type="hidden" name="userID" value="{{ review.user_id }}">
 
-                                    <button type="submit" class="btn btn-link">{{ review.alias|upper }}:</button>
-                                    {{ review.content }}
 
-                                </form>
-                                </p>
+                                    {{ review.alias|upper }}
+
+
+                                </a>
+                                {{ review.content }}
+
 
                                 <div class="card-footer text-muted">
 

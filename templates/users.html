@@ -108,13 +108,13 @@
                     <div class="col">
 
                         <!-- each review title is a link  -->
+    <a href="/get_book_review/{{ review.book_id }}">
+    
+        <h4>{{ review.title|capitalize }}</h4>
+    
+    </a>
 
-
-                        <form action="/get_book_review" method="post">
-                            <input type="hidden" name="book_id" value="{{ review.book_id }}">
-
-                            <button type="submit" class="btn btn-link">{{ review.title }}</button>
-                        </form>
+                        
 
                     </div>
                 </div>

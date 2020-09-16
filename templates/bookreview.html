@@ -85,16 +85,13 @@
                         </h6>
 
                         <div>
+                            <a href="/getUser/{{ review.user_id }}">
 
-                            <!-- form routes to user page of review, using hidden input value -->
-                            <form action="/getUser" method="post">
+                                {{ review.alias|upper }}
 
-                                <input type="hidden" name="userID" value="{{ review.user_id }}">
-                                <!-- user's alias( link) & comment -->
-                                <button type="submit" class="btn btn-link">{{ review.alias|upper }} :</button>
-                                {{ review.content }}
+                            </a>
 
-                            </form>
+                            {{ review.content }}
 
                         </div>
 
