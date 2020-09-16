@@ -274,6 +274,8 @@ def additionalReview(bookId):
         }
         mysql.query_db(query,data)
 
+        flash("Thank you! your review is appreiated!", 'review-success')
+
         return redirect('/get_book_review/'+ bookId)
 
     # return redirect('/booksPage')
@@ -321,9 +323,11 @@ def getBookReview(bookId):
         'bookID': bookId
     }
     review_results = mysql.query_db(query, data)
+
+
     
 
-    return render_template('bookreview.html', results = results, review_results= review_results)
+    return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results))
 
 
 
@@ -351,6 +355,7 @@ def getUser(userId):
     }
     review_results = mysql.query_db(query, data)
 
+
     # getting total reviews by user
     mysql = connectToMySQL('booksdb')
     query = "SELECT COUNT(id) AS count FROM reviews WHERE reviews.user_id = %(user_id)s;"
@@ -373,8 +378,6 @@ def delete_review(bookId, reviewId):
     print(bookId)
     print(reviewId)
 
-
-
     mysql = connectToMySQL('booksdb')
     query = "DELETE FROM reviews WHERE (id = %(reviewId)s);"
     data = {
@@ -385,12 +388,7 @@ def delete_review(bookId, reviewId):
     print("======================================")
     print(results)
 
-
     return redirect('/get_book_review/'+ bookId)
-
-
-
-
 
 
 # ====================================================

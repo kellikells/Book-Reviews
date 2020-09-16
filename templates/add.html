@@ -11,40 +11,37 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
-
+        <!-- fontawesome -->
+        <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body style="background-color: #ced;">
 
-
     <!-- ================= NAV ======================== -->
     <nav id="navbar" class="navbar navbar-dark" style="background-color:#aa9;">
         <span class="navbar-text justify-content-left" style="color: white;">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-                <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
-            </svg>
+    <i class="fas fa-portrait"></i>
             {{ session['user_alias'] }}
         </span>
 
-        <!-- =================== HOME ROUTE ===================== -->
-        <form action="/booksPage" method="get" class="form-inline justify-content-end">
-            <button class="btn" type="submit" style="color: white;">home</button>
-        </form>
+        <ul class="nav justify-content-end">
 
+            <!-- ============= HOME ROUTE =============== -->
+            <li class="nav-item">
+                <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
+            </li>
 
-        <!-- =================== LOGOUT ROUTE ===================== -->
-        <form action="/logout" method="post" class="form-inline justify-content-end">
-            <button class="btn" type="submit" style="color: white;">log out</button>
-        </form>
+            <!-- ============== LOGOUT ROUTE ================ -->
+            <li class="nav-item">
+                <a class="nav-link" href="/logout" style="color: white;">Log out <i class="fas fa-door-open"></i></a>
+            </li>
+        </ul>
+
     </nav>
 
-    <!-- ============================================================================================== -->
+    <!-- ======================================================================= -->
     <div style="height: 30px; background-color:white; margin-bottom: 30px;">
 
     </div>
@@ -203,4 +200,5 @@
         crossorigin="anonymous"></script>
 
 </body>
+
 </html>

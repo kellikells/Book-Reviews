@@ -7,3 +7,12 @@
 .error {
      color: red;
 }
+
+/* 
+a {
+    font-weight: bold;
+} */
+
+body {
+    font: Helvetica, sans-serif;
+}
