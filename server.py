@@ -237,7 +237,7 @@ def addReview():
             'content': request.form['content'],
             'rating': request.form['rating']
         }
-        
+
         mysql.query_db(query,data)
         flash("Your review has been posted", 'review-success')
 
@@ -322,8 +322,7 @@ def getBookReview(bookId):
     }
     review_results = mysql.query_db(query, data)
     
-    print("======================================")
-    print(results)
+
     return render_template('bookreview.html', results = results, review_results= review_results)
 
 
@@ -360,16 +359,38 @@ def getUser(userId):
     }
     count_results = mysql.query_db(query, data)
 
-
-
     return render_template('users.html', user_results = user_results, review_results = review_results, count_results = count_results)
 
 
+# ====================================================
+#          DELETE A REVIEW: bookreview.html
+# ====================================================
+@app.route('/delete_review/<bookId>/<reviewId>', methods=['POST', 'GET'])
+def delete_review(bookId, reviewId):
+    user_id = session['user_id']
+
+    print("======================================")
+    print(bookId)
+    print(reviewId)
 
 
-# ====================================================
-#        LOG OUT: clear session
-# ====================================================
+
+    mysql = connectToMySQL('booksdb')
+    query = "DELETE FROM reviews WHERE (id = %(reviewId)s);"
+    data = {
+        'reviewId': reviewId
+    }
+    results= mysql.query_db(query, data)
+
+    print("======================================")
+    print(results)
+
+
+    return redirect('/get_book_review/'+ bookId)
+
+
+
+
 
 
 # ====================================================

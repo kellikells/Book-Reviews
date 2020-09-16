@@ -67,7 +67,7 @@
 
             <!-- author  -->
             <h6>
-                {{ book.author_name|capitalize }}
+                AUTHOR: {{ book.author_name|capitalize }}
             </h6>
 
         </div>
@@ -95,6 +95,16 @@
 
                         <!-- comment timestamp  -->
                         <p> {{ review.updated_at }} </p>
+
+                        
+                        <!-- --------------- delete --------------------  -->
+                        {% if review.user_id == session['user_id']: %}
+
+                        <a href="/delete_review/{{ review.book_id }}/{{ review.id }}">DELETE REVIEW</a>
+
+                        {% endif %}
+                        <!-- -----------------------------------------  -->
+
                     </div>
                 </div>
                 {% endfor %}
