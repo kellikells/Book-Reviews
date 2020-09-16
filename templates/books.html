@@ -12,7 +12,7 @@
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
     <!-- fontawesome -->
-<script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -30,8 +30,9 @@
 
             <!-- ======== ADD BOOKS AND REVIEW ROUTE ========= -->
             <li class="nav-item">
-          
-                <a class="nav-link" href="/addPage" style="color: white;">Add Book & Review <i class="fas fa-pencil-alt"></i></a>
+
+                <a class="nav-link" href="/addPage" style="color: white;">Add Book & Review <i
+                        class="fas fa-pencil-alt"></i></a>
             </li>
 
             <!-- ============== LOGOUT ROUTE ================ -->
@@ -50,7 +51,7 @@
 
             <!-- ------------------ Left column -------------------- -->
             <div class="col-7">
-                <h1 style="margin-bottom: 20px;">Recent Book Reviews:</h1>
+                <h1 style="margin-bottom: 20px;">Recent Reviews:</h1>
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
@@ -91,32 +92,32 @@
 
             <!-- ------------------ Right column -------------------- -->
             <div class="col" style="text-align: center;">
-                <h3 style="margin-top: 50px; margin-bottom: 30px;">Other Books with Reviews:</h3>
+                <h3 style="margin-bottom: 30px;">Other Books with Reviews:</h3>
 
                 <div class="row">
-                    <div class="col" style="background-color: #fff">
+                    <div class="col">
 
-                        <div scrolling="yes">
+                        <div class="card"  style="background-color: #fff">
+                            <ul class="list-group list-group-flush">
 
-                            <!-- LOOP FOR ALL BOOKS IN DATABASE  -->
-                            {% for book in book_results %}
-                            <div class="row">
-                                <div class="col">
-
-                                    <a class="text-uppercase" href="/get_book_review/{{ book.id }}">
+                                <!-- LOOP FOR ALL BOOKS IN DATABASE  -->
+                                {% for book in book_results %}
+                                <li class="list-group-item"> <a class="text-uppercase" style="color: #897;"
+                                        href="/get_book_review/{{ book.id }}">
 
                                         {{ book.title }}
-                                    </a>
-                                </div>
-                            </div>
-                            {% endfor %}
+                                    </a></li>
+                                {% endfor %}
 
+                            </ul>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <!-- BOOTSTRAP'S: Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -30,12 +30,12 @@
         </span>
 
         <ul class="nav justify-content-end">
-        
+
             <!-- ============= HOME ROUTE =============== -->
             <li class="nav-item">
                 <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
             </li>
-        
+
             <!-- ============== LOGOUT ROUTE ================ -->
             <li class="nav-item">
                 <a class="nav-link" href="/logout" style="color: white;">Log out <i class="fas fa-door-open"></i></a>
@@ -45,7 +45,7 @@
 
     <!-- =================================================================================================== -->
 
-    <div style="height: 30px; background-color:white; margin-bottom: 30px;">
+    <div style="height: 30px; background-color:white; margin-bottom: 15px;">
     </div>
 
     {% for book in results %}
@@ -53,17 +53,17 @@
 
 
         <!----- book title  ------->
-        <div class="row">
-            <h2>
+        <div class="row justify-content-center">
+            <h1 style="font-weight:bold;">
                 {{ book.title|capitalize }}
-            </h2>
+            </h1>
         </div>
-        <div class="row">
+        <div class="row justify-content-center" style="margin-bottom: 25px;">
 
             <!-- author  -->
-            <h3>
-                written by: {{ book.author_name|capitalize }}
-            </h3>
+            <h4 style="color: grey;">
+                by: {{ book.author_name|capitalize }}
+            </h4>
 
         </div>
         <div class="row" style="margin-top: 20px;">
@@ -86,30 +86,37 @@
                 <div class="row" style="margin: 20px 0;">
                     <div class="col" style="margin-left: 20px; border-bottom: solid 2px black;">
 
-                        <!-- rating -->
-                        <h6>Rating: {{ review.rating }}</h6>
-
                         <div>
                             <!-- user alias as a link  -->
-                            <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }} </a>
+                            <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }} :</a>
 
                             <!-- review content -->
                             {{ review.content }}
                         </div>
+                        <div style="margin-top: 10px;">
+                            <!-- rating -->
+                            <h6>Rating: {{ review.rating }}</h6>
 
-                        <!-- comment timestamp  -->
-                        <p style="margin: 10px 0;"> {{ review.updated_at }}
+                        </div>
 
+                        <div class="row">
+                            <div class="col">
+                                <!-- comment timestamp  -->
+                                <p style="margin: 10px 0;"> {{ review.updated_at }} </p>
+
+                            </div>
 
                             <!-- --------------- delete --------------------  -->
                             {% if review.user_id == session['user_id']: %}
+                            <div class="col">
+                                <a href="/delete_review/{{ review.book_id }}/{{ review.id }}" class="btn btn-warning"
+                                    role="button" style="margin-left: 70px;">DELETE REVIEW</a>
+                            </div>"
 
-                            <a href="/delete_review/{{ review.book_id }}/{{ review.id }}" class="btn btn-warning"
-                                role="button" style="margin-left: 50px;">DELETE REVIEW</a>
 
                             {% endif %}
                             <!-- -----------------------------------------  -->
-                        </p>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
