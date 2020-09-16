@@ -18,11 +18,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #acb;">
     <div class="container">
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid" style="background-color: #acb;">
             <div class="container">
-                <h1 class="display-4" style="text-align: center;">Book Reviews!</h1>
+                <h1 class="display-4" style="text-align: center; font-weight: bold; color:white;">Book Reviews!</h1>
             </div>
         </div>
 
@@ -48,11 +48,13 @@
         </div>
 
 
-        <div class="row">
+        <div class="row" >
 
             <!-- =============== REGISTRATION COLUMN ================== -->
-            <div class="col">
-                <h2>Register here!</h2>
+            <div class="col" style="margin-right:15px; padding: 30px;background-color: #ded;">
+                <h2 style="margin-bottom:15px;">Register here!</h2>
+
+
                 <form action="/register" method="post">
 
                     <!-- name: letters only, at least 2 characters -->
@@ -142,7 +144,7 @@
             </div>
 
             <!-- =============== LOGIN COLUMN ================ -->
-            <div class="col">
+            <div class="col" style="margin-left:15px; padding: 30px; background-color: #ded;">
                 <h2>Login here!</h2>
                 <form action="/login" method="post">
 

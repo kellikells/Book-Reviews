@@ -274,7 +274,7 @@ def getBookReview():
 
     # getting book title & author 
     mysql = connectToMySQL('booksdb')
-    query = "SELECT * FROM books LEFT JOIN authors ON books.author_id = authors.id LEFT JOIN reviews ON books.id=reviews.book_id JOIN users ON reviews.user_id=users.id WHERE books.id = %(bookID)s;"
+    query = "SELECT author_name, title FROM books JOIN authors ON books.author_id = authors.id WHERE books.id = %(bookID)s;"
     data = {
         'bookID': request.form['book_id']
     }
@@ -287,6 +287,14 @@ def getBookReview():
         'bookID': request.form['book_id']
     }
     review_results = mysql.query_db(query, data)
+
+
+    print('----------------------------------')
+    print(results)
+
+
+    print('----------------------------------')
+    print(review_results)
 
     return render_template('bookreview.html', results = results, review_results= review_results)
 
