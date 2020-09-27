@@ -316,6 +316,7 @@ def getBookReview(bookId):
     }
     results = mysql.query_db(query, data)
 
+
     # getting reviews for the book
     mysql = connectToMySQL('booksdb')
     query = "SELECT * FROM reviews JOIN users ON reviews.user_id = users.id WHERE book_id = %(bookID)s;"
@@ -325,9 +326,12 @@ def getBookReview(bookId):
     review_results = mysql.query_db(query, data)
 
 
-    
+    image = "static/filled_star.jpg"
 
-    return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results))
+
+
+
+    return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results), image=image)
 
 
 

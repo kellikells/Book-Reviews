@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="../static/style.css">
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -20,7 +22,7 @@
 <body style="background-color: #ced;">
 
     <!-- ================= NAV ======================== -->
-    <nav id="navbar" class="navbar navbar-dark" style="background-color:#aa9;">
+    <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
         <span class="navbar-text justify-content-left" style="color: white;">
             <i class="fas fa-portrait"></i>
             {{ session['user_alias'] }}
@@ -97,7 +99,7 @@
                 <div class="row">
                     <h5>Posted Reviews on the following books:</h5>
                     <div class="col">
-                        
+
                         <!-- style for scroll on list  -->
                         <div
                             style="margin-top: 20px; height: 300px; width: 300px; overflow-y: auto; overflow-x: hidden;">

@@ -11,8 +11,11 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
-        <!-- fontawesome -->
-        <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
@@ -20,9 +23,9 @@
 <body style="background-color: #ced;">
 
     <!-- ================= NAV ======================== -->
-    <nav id="navbar" class="navbar navbar-dark" style="background-color:#aa9;">
+    <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
         <span class="navbar-text justify-content-left" style="color: white;">
-    <i class="fas fa-portrait"></i>
+            <i class="fas fa-portrait"></i>
             {{ session['user_alias'] }}
         </span>
 
@@ -79,7 +82,8 @@
 
                     <div class="form-group row">
 
-                        <label style="font-weight: bold; font-size: 1.5rem;" for="title" class="col-sm-3 col-form-label">Book Title:</label>
+                        <label style="font-weight: bold; font-size: 1.5rem;" for="title"
+                            class="col-sm-3 col-form-label">Book Title:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["title"]) %}
                             {% if errors %}
@@ -96,13 +100,14 @@
                         </div>
                     </div>
 
-                    <label  style="font-weight: bold; font-size: 1.5rem;" >
+                    <label style="font-weight: bold; font-size: 1.5rem;">
                         Author:
                     </label>
 
                     <!-- create new author  -->
                     <div style="margin-left: 10px;" class="form-group row">
-                        <label style="font-size: 1.25rem;" for="new-author" class="col-sm-3 col-form-label ">Add a new author:</label>
+                        <label style="font-size: 1.25rem;" for="new-author" class="col-sm-3 col-form-label ">Add a new
+                            author:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["author"]) %}
                             {% if errors %}
@@ -119,8 +124,9 @@
                     </div>
 
                     <!-- old-author: drop down of existing authors in database -->
-                    <div style="margin-left: 10px;"class="form-group row">
-                        <label style="font-size: 1.25rem;" for="old-author" class="col-sm-3 col-form-label">Existing Author:</label>
+                    <div style="margin-left: 10px;" class="form-group row">
+                        <label style="font-size: 1.25rem;" for="old-author" class="col-sm-3 col-form-label">Existing
+                            Author:</label>
 
 
                         <div class="col-sm-2">
@@ -141,7 +147,8 @@
 
                     <!-- Review  -->
                     <div class="form-group row">
-                        <label  style="font-weight: bold; font-size: 1.5rem;"  for="content" class="col-sm-3 col-form-label">Review:</label>
+                        <label style="font-weight: bold; font-size: 1.5rem;" for="content"
+                            class="col-sm-3 col-form-label">Review:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["review"]) %}
                             {% if errors %}
@@ -159,7 +166,8 @@
 
                     <!-- rating  -->
                     <div class="form-group row">
-                        <label style="font-weight: bold; font-size: 1.5rem;"  for="rating" class="col-sm-3 col-form-label">Rating:</label>
+                        <label style="font-weight: bold; font-size: 1.5rem;" for="rating"
+                            class="col-sm-3 col-form-label">Rating:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["rating"]) %}
                             {% if errors %}

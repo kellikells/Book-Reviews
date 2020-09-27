@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="../static/style.css">
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
-
+    <!-- google icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,7 +24,7 @@
 
 
     <!-- ================= NAV ======================== -->
-    <nav id="navbar" class="navbar navbar-dark" style="background-color:#aa9;">
+    <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
         <span class="navbar-text justify-content-left" style="color: white;">
             <i class="fas fa-portrait"></i>
             {{ session['user_alias'] }}
@@ -93,9 +94,25 @@
                             <!-- review content -->
                             {{ review.content }}
                         </div>
+
+
+
+
+                        <!-- add stars in place of number  -->
                         <div style="margin-top: 10px;">
                             <!-- rating -->
                             <h6>Rating: {{ review.rating }}</h6>
+
+                            {% if review.rating == '3' %}
+                            <!-- <img src=' {{ image }} ''> -->
+                            <img src="static/filled_star.jpg">
+
+                            {% endif %}
+
+
+
+
+
 
                         </div>
 
