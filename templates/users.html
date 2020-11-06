@@ -31,7 +31,6 @@
         <ul class="nav justify-content-end">
 
 
-
             <!-- ======== ADD BOOKS AND REVIEW ROUTE ========= -->
             <li class="nav-item">
                 <a class="nav-link" href="/addPage" style="color: white;">Add Book & Review <i
@@ -43,10 +42,12 @@
                 <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
             </li>
 
-
             <!-- ============== LOGOUT ROUTE ================ -->
             <li class="nav-item">
-                <a class="nav-link" href="/logout" style="color: white;">Log out <i class="fas fa-door-open"></i></a>
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;"
+                            class="fas fa-door-open"></i></button>
+                </form>
             </li>
         </ul>
 

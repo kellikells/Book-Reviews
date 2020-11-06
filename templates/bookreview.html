@@ -39,7 +39,10 @@
 
             <!-- ============== LOGOUT ROUTE ================ -->
             <li class="nav-item">
-                <a class="nav-link" href="/logout" style="color: white;">Log out <i class="fas fa-door-open"></i></a>
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;" class="fas fa-door-open"></i></button>
+                </form>
+
             </li>
         </ul>
     </nav>
@@ -87,22 +90,21 @@
                 <div class="row" style="margin: 20px 0;">
                     <div class="col" style="margin-left: 20px; border-bottom: solid 2px black;">
 
-                        <div>
-                            <!-- user alias as a link  -->
-                            <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }} :</a>
+                        <div> <span style="font-size: 1.5em;">
+                                <!-- user alias as a link  -->
+                                <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }} :</a>
 
-                            <!-- review content -->
-                            {{ review.content }}
+                                <!-- review content -->
+
+                                {{ review.content }}
+                            </span>
                         </div>
-
-
 
 
                         <!-- add stars in place of number  -->
                         <div style="margin-top: 10px;">
                             <!-- rating -->
                             <h6>Rating: {{ review.rating }}</h6>
-
 
 
                             {% if review.rating == '1' %}
@@ -137,25 +139,23 @@
 
                         </div>
 
-                        
+
                         <div class="row" style="margin: 10px 0; justify-content: space-between;">
-              
 
-                                <div >
-                                    <!-- comment timestamp  -->
-                                    <p > {{ review.updated_at }} </p>
-                                </div>
+                            <div>
+                                <!-- comment timestamp  -->
+                                <p> {{ review.updated_at }} </p>
+                            </div>
 
-                                <!-- --------------- delete --------------------  -->
-                                {% if review.user_id == session['user_id']: %}
-                                <div>
-                                    <a href="/delete_review/{{ review.book_id }}/{{ review.id }}" role="button">
-                                        <span class="material-icons">
-                                            delete_outline
-                                        </span></a>
-                                </div>
-                                {% endif %}
-                          
+                            <!-- --------------- delete --------------------  -->
+                            {% if review.user_id == session['user_id']: %}
+                            <div>
+                                <a href="/delete_review/{{ review.book_id }}/{{ review.id }}">
+                                    <span class="fas fa-trash" style="font-size: 1.5em;" data-toggle="tooltip"
+                                        data-placement="top" title="delete" id="deleteImg"></span></a>
+                            </div>
+                            {% endif %}
+
                             <!-- -----------------------------------------  -->
                         </div>
                     </div>
