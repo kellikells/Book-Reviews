@@ -326,6 +326,11 @@ def getBookReview(bookId):
     review_results = mysql.query_db(query, data)
 
 
+
+
+
+
+
     image = "static/filled_star.jpg"
 
 

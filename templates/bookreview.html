@@ -103,12 +103,38 @@
                             <!-- rating -->
                             <h6>Rating: {{ review.rating }}</h6>
 
-                            {% if review.rating == '3' %}
-                            <!-- <img src=' {{ image }} ''> -->
-                            <img src="static/filled_star.jpg">
 
+
+                            {% if review.rating == '1' %}
+                            <!-- <img src=' {{ image }} ''> -->
+                            <img src="../static/filled_star.jpg"><img src="../static/white_star.jpg"><img
+                                src="../static/white_star.jpg"><img src="../static/white_star.jpg"><img
+                                src="../static/white_star.jpg">
                             {% endif %}
 
+                            {% if review.rating == '2' %}
+                            <img src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/white_star.jpg"><img src="../static/white_star.jpg"><img
+                                src="../static/white_star.jpg">
+                            {% endif %}
+
+                            {% if review.rating == '3' %}
+                            <img src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/filled_star.jpg"><img src="../static/white_star.jpg"><img
+                                src="../static/white_star.jpg">
+                            {% endif %}
+
+                            {% if review.rating == '4' %}
+                            <img src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/white_star.jpg">
+                            {% endif %}
+
+                            {% if review.rating == '5' %}
+                            <img src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/filled_star.jpg"><img src="../static/filled_star.jpg"><img
+                                src="../static/filled_star.jpg">
+                            {% endif %}
 
 
 
