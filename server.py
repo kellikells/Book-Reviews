@@ -91,7 +91,7 @@ def register():
         session['user_alias'] = request.form['alias']
     
         print('SESSION:', session)
-        flash("Aww yeah, you successfully registered.  You can now log in using the same information you provided!", 'success')
+        flash("Congratulations! You have successfully registered.  You may now log in using the same information you provided!", 'success')
 
         return redirect('/')
 
@@ -326,15 +326,7 @@ def getBookReview(bookId):
     review_results = mysql.query_db(query, data)
 
 
-
-
-
-
-
     image = "static/filled_star.jpg"
-
-
-
 
     return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results), image=image)
 
