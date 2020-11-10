@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body style="background-color: #ced;">
+<body>
 
     <!-- ================= NAV ======================== -->
     <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
@@ -31,14 +31,13 @@
         <ul class="nav justify-content-end">
 
             <!-- ======== ADD BOOKS AND REVIEW ROUTE ========= -->
-            <li class="nav-item">
-
+            <li class="nav-item" id="myNavItem">
                 <a class="nav-link" href="/addPage" style="color: white;">Add Book & Review <i
                         class="fas fa-pencil-alt"></i></a>
             </li>
 
             <!-- ============== LOGOUT ROUTE ================ -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <form action="/logout" method="post">
                     <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;"
                             class="fas fa-door-open"></i></button>
@@ -48,63 +47,111 @@
     </nav>
 
     <!-- =================================================================================================== -->
-    <div style="height: 30px; background-color:white; margin-bottom: 30px;">
+    <div style="height: 30px; background-color:#ced; margin-bottom: 30px;">
 
     </div>
     <div class="container">
         <div class="row">
+            <div class="col">
+                <h1 id="myFont" style="margin-bottom: 20px;">Recent Reviews:</h1>
+            </div>
+        </div>
+
+        <div class="row">
 
             <!-- ------------------ Left column -------------------- -->
-            <div class="col-7">
-                <h1 style="margin-bottom: 20px;">Recent Reviews:</h1>
+            <div class="col-9">
+                <!-- <h1 id="myFont" style="margin-bottom: 20px;">Recent Reviews:</h1> -->
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
                 {% for review in results %}
-                <div class="row" style="margin-bottom: 20px;">
+                <div class="row" style="margin-bottom: 20px; border-top: solid 2px #acd; max-width:97%;">
                     <div class="col">
-                        <div class="card">
-                            <div class="card-header">
 
-                                <!-- book title as link -->
-                                <a href="/get_book_review/{{ review.book_id }}">
-                                    <h4>{{ review.title|capitalize }}</h4>
-                                </a>
-                            </div>
 
-                            <div class="card-body">
-
-                                <!-- rating -->
-                                <p>Rating: {{ review.rating }}</p>
+                        <div class="row" style="justify-content: space-between; align-items: flex-end;">
+                            <div class="col">
 
                                 <!-- user alias as a link  -->
-                                <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }}</a>
+                                <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }}</a> rated it:
+                                <span style="font-size:10px;">
 
+                                    <!-- rating -->
+                                    {% if review.rating == '1' %}
+                                    <i class="material-icons">star</i><i class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i>
+                                    {% endif %}
+
+                                    {% if review.rating == '2' %}
+                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i>
+                                    {% endif %}
+
+                                    {% if review.rating == '3' %}
+                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star</i><i class="material-icons">star_outline</i><i
+                                        class="material-icons">star_outline</i>
+                                    {% endif %}
+
+                                    {% if review.rating == '4' %}
+                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star_outline</i>
+                                    {% endif %}
+
+                                    {% if review.rating == '5' %}
+                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star</i><i class="material-icons">star</i><i
+                                        class="material-icons">star</i>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            <div class="col" style="text-align: right;">
+                                <!-- comment's timestamp  -->
+                                posted @ {{ review.updated_at }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <!-- book title as link -->
+                                <a href="/get_book_review/{{ review.book_id }}">
+                                    <h4 id="myFont">{{ review.title|capitalize }}</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                by {{ review.author_name }}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
                                 <!-- review content -->
                                 {{ review.content }}
-                                <div class="card-footer text-muted">
-
-                                    <!-- comment's timestamp  -->
-                                    posted @ {{ review.updated_at }}
-
-                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
                 {% endfor %}
             </div>
 
             <!-- ------------------ Right column -------------------- -->
             <div class="col" style="text-align: center;">
-                <h3 style="margin-bottom: 30px;">Other Books with Reviews:</h3>
+                <h5 style="margin-bottom: 10px; border-bottom: 2px #acd solid;">OTHER BOOKS</h5>
 
                 <div class="row">
                     <div class="col">
 
-                        <div class="card" style="background-color: #fff; height: 200px; overflow: auto;">
+                        <div style="height: 200px; overflow: auto;">
                             <ul class="list-group list-group-flush">
-
                                 <!-- LOOP FOR ALL BOOKS IN DATABASE  -->
                                 {% for book in book_results %}
                                 <li class="list-group-item"> <a class="text-uppercase" style="color: #897;"
@@ -113,7 +160,6 @@
                                         {{ book.title }}
                                     </a></li>
                                 {% endfor %}
-
                             </ul>
                         </div>
 

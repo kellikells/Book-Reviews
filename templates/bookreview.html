@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body style="background-color: #ced;">
+<body>
 
 
     <!-- ================= NAV ======================== -->
@@ -33,14 +33,15 @@
         <ul class="nav justify-content-end">
 
             <!-- ============= HOME ROUTE =============== -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
             </li>
 
             <!-- ============== LOGOUT ROUTE ================ -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <form action="/logout" method="post">
-                    <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;" class="fas fa-door-open"></i></button>
+                    <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;"
+                            class="fas fa-door-open"></i></button>
                 </form>
 
             </li>
@@ -49,7 +50,7 @@
 
     <!-- =================================================================================================== -->
 
-    <div style="height: 30px; background-color:white; margin-bottom: 15px;">
+    <div style="height: 30px; background-color:#ced; margin-bottom: 30px;">
     </div>
 
     {% for book in results %}
@@ -58,7 +59,7 @@
 
         <!----- book title  ------->
         <div class="row justify-content-center">
-            <h1 style="font-weight:bold;">
+            <h1 id="myFont" style="font-weight:bold;">
                 {{ book.title|capitalize }}
             </h1>
         </div>
@@ -72,7 +73,7 @@
         </div>
         <div class="row" style="margin-top: 20px;">
             <div class="col-7" style="padding-right: 30px;">
-                <h4 style="border-bottom: solid 3px black; margin-bottom: 30px;">Reviews:</h4>
+                <h4 id="myFont" style="border-bottom: solid 3px black; margin-bottom: 30px;">Reviews:</h4>
 
 
                 <!-- if there are no reviews:  -->
@@ -144,7 +145,8 @@
 
                             <div>
                                 <!-- comment timestamp  -->
-                                <p> {{ review.updated_at }} </p>
+                                <p> posted @ {{ review.updated_at|date: "M d, Y" }}
+                                </p>
                             </div>
 
                             <!-- --------------- delete --------------------  -->
@@ -167,7 +169,7 @@
             <!----------------  ADD A REVIEW  ------------------>
             <div class="col-5">
                 <div class="row">
-                    <h4>Add a Review:</h4>
+                    <h4 id="myFont">Add a Review:</h4>
                 </div>
 
                 <!-- ADD REVIEW ROUTE  -->

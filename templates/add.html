@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body style="background-color: #ced;">
+<body>
 
     <!-- ================= NAV ======================== -->
     <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
@@ -32,12 +32,12 @@
         <ul class="nav justify-content-end">
 
             <!-- ============= HOME ROUTE =============== -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
             </li>
 
             <!-- ============== LOGOUT ROUTE ================ -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <form action="/logout" method="post">
                     <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;"
                             class="fas fa-door-open"></i></button>
@@ -48,7 +48,7 @@
     </nav>
 
     <!-- ======================================================================= -->
-    <div style="height: 30px; background-color:white; margin-bottom: 30px;">
+    <div style="height: 30px; background-color:#ced; margin-bottom: 30px;">
 
     </div>
     <div class="container">
@@ -85,7 +85,7 @@
 
                     <div class="form-group row">
 
-                        <label style="font-weight: bold; font-size: 1.5rem;" for="title"
+                        <label id="myFont" style="font-weight: bold; font-size: 1.5rem;" for="title"
                             class="col-sm-3 col-form-label">Book Title:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["title"]) %}
@@ -103,7 +103,7 @@
                         </div>
                     </div>
 
-                    <label style="font-weight: bold; font-size: 1.5rem;">
+                    <label id="myFont" style="font-weight: bold; font-size: 1.5rem;">
                         Author:
                     </label>
 
@@ -150,7 +150,7 @@
 
                     <!-- Review  -->
                     <div class="form-group row">
-                        <label style="font-weight: bold; font-size: 1.5rem;" for="content"
+                        <label id="myFont" style="font-weight: bold; font-size: 1.5rem;" for="content"
                             class="col-sm-3 col-form-label">Review:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["review"]) %}
@@ -169,7 +169,7 @@
 
                     <!-- rating  -->
                     <div class="form-group row">
-                        <label style="font-weight: bold; font-size: 1.5rem;" for="rating"
+                        <label id="myFont" style="font-weight: bold; font-size: 1.5rem;" for="rating"
                             class="col-sm-3 col-form-label">Rating:</label>
                         <div style="color:red;">
                             {% with errors = get_flashed_messages(category_filter=["rating"]) %}

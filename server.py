@@ -288,7 +288,7 @@ def booksPage():
 
     # reviews join users, join books, join authors
     mysql = connectToMySQL('booksdb')
-    query = "SELECT * FROM reviews LEFT JOIN users ON reviews.user_id= users.id JOIN books ON reviews.book_id = books.id JOIN authors ON books.author_id= authors.id ORDER BY reviews.id DESC LIMIT 3;"
+    query = "SELECT * FROM reviews LEFT JOIN users ON reviews.user_id= users.id JOIN books ON reviews.book_id = books.id JOIN authors ON books.author_id= authors.id ORDER BY reviews.id DESC LIMIT 10;"
     results = mysql.query_db(query)
 
     # getting all books in database to list as a link

@@ -19,7 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body style="background-color: #ced;">
+<body >
 
     <!-- ================= NAV ======================== -->
     <nav id="navbar" class="navbar navbar-dark" style="background-color:black;">
@@ -32,18 +32,18 @@
 
 
             <!-- ======== ADD BOOKS AND REVIEW ROUTE ========= -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <a class="nav-link" href="/addPage" style="color: white;">Add Book & Review <i
                         class="fas fa-pencil-alt"></i></a>
             </li>
 
             <!-- ============= HOME ROUTE =============== -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <a class="nav-link" href="/booksPage" style="color: white;">Home <i class="fas fa-home"></i></a>
             </li>
 
             <!-- ============== LOGOUT ROUTE ================ -->
-            <li class="nav-item">
+            <li class="nav-item" id="myNavItem">
                 <form action="/logout" method="post">
                     <button type="submit" class="btn btn-Link" style="color: white;">Log out <i style="color: white;"
                             class="fas fa-door-open"></i></button>
@@ -53,7 +53,7 @@
 
     </nav>
     <!-- ========================================================== -->
-    <div style="height: 30px; background-color:white; margin-bottom: 30px;">
+    <div style="height: 30px; background-color:#ced; margin-bottom: 30px;">
     </div>
 
     <div class="container">
@@ -65,7 +65,7 @@
                     <div class="col">
 
                         <!-- user alias -->
-                        <h4>User Alias: {{ user_results[0].alias }}</h4>
+                        <h4><span id="myFont">User Alias: </span> {{ user_results[0].alias }}</h4>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
                     <div class="col">
 
                         <!-- user name  -->
-                        <h4>Name: {{ user_results[0].name }}</h4>
+                        <h4><span id="myFont">Name: </span>{{ user_results[0].name }}</h4>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                     <div class="col">
 
                         <!-- user email  -->
-                        <h4>Email: {{ user_results[0].email }} </h4>
+                        <h4><span id="myFont">Email: </span>{{ user_results[0].email }} </h4>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                     <div class="col">
 
                         <!-- user total reviews -->
-                        <h5>Total Reviews: {{ count_results[0].count }}</h5>
+                        <h5><span id="myFont">Total Reviews: </span>{{ count_results[0].count }}</h5>
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
 
             <div class="col">
                 <div class="row">
-                    <h5>Posted Reviews on the following books:</h5>
+                    <h5 id="myFont">Posted Reviews on the following books:</h5>
                     <div class="col">
 
                         <!-- style for scroll on list  -->

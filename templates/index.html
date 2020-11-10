@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,18 +11,19 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- static css -->
     <link rel="stylesheet" href="../static/style.css">
-        <!-- fontawesome -->
-        <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/47aea27298.js" crossorigin="anonymous"></script>
     <!-- Link to jQuery  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
-<body style="background-color: #acb;">
+<body>
+    <div style="background-color: #acb;  padding: 30px 0; margin-bottom: 40px;">
+        <h1 id="myFont" class="display-4" style="text-align: center; font-weight: bold; color:black;">Book Reviews</h1>
+    </div>
     <div class="container">
-        <!-- <div class="jumbotron jumbotron-fluid" style="background-color: #acb;"> -->
-            <div class="container" style="border-bottom: dotted white; padding: 30px 0 10px 0; margin-bottom: 40px;">
-                <h1 class="display-4" style="text-align: center; font-weight: bold; color:white;">Book Reviews!</h1>
-            </div>
+
+
         <!-- </div> -->
 
         <!-- ======== ALERT FOR REGISTER SUCCESS ======== -->
@@ -43,124 +45,129 @@
             {% block body %}{% endblock %}
         </div>
 
-        <div class="row" >
+        <div class="row">
 
             <!-- =============== REGISTRATION COLUMN ================== -->
-            <div class="col" style="margin-right:15px; padding: 30px;background-color: #ded;">
-                <h2 style="margin-bottom:15px;">Register here!</h2>
+            <div class="col" style="margin-right:15px; padding: 30px;">
+                <h2 id="myFont" style="margin:0 0 10px 15px; ">Register</h2>
 
-                <form action="/register" method="post">
+                <div class="col" style="border: 4px solid #ded; padding:15px;">
 
-                    <!-- name: letters only, at least 2 characters -->
-                    <div class="form-group">
-                        <label class="labels" for="name">Name:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["name"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
+                    <form action="/register" method="post">
+
+                        <!-- name: letters only, at least 2 characters -->
+                        <div class="form-group">
+                            <label class="labels" for="name">Name:</label>
+                            <div>
+                                {% with errors = get_flashed_messages(category_filter=["name"]) %}
+                                {% if errors %}
+                                {% for msg in errors %}
+                                <p class="error">{{ msg }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
+
+                            <input name="name" type="text" class="form-control" id="name">
                         </div>
 
-                        <input name="name" type="text" class="form-control" id="name">
-                    </div>
+                        <!-- alias: not blank -->
+                        <div class="form-group">
+                            <label class="labels" for="alias">Alias:</label>
+                            <div>
+                                {% with errors = get_flashed_messages(category_filter=["alias"]) %}
+                                {% if errors %}
+                                {% for msg in errors %}
+                                <p class="error">{{ msg }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-                    <!-- alias: not blank -->
-                    <div class="form-group">
-                        <label class="labels" for="alias">Alias:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["alias"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
+                            <input name="alias" type="text" class="form-control" id="alias">
                         </div>
 
-                        <input name="alias" type="text" class="form-control" id="alias">
-                    </div>
+                        <!-- email: email format, not already in database -->
+                        <div class="form-group">
+                            <label class="labels" for="email">Email:</label>
+                            <div>
+                                {% with errors = get_flashed_messages(category_filter=["email"]) %}
+                                {% if errors %}
+                                {% for msg in errors %}
+                                <p class="error">{{ msg }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-                    <!-- email: email format, not already in database -->
-                    <div class="form-group">
-                        <label class="labels" for="email">Email:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["email"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
+                            <input name="email" type="text" class="form-control" id="email">
                         </div>
 
-                        <input name="email" type="text" class="form-control" id="email">
-                    </div>
+                        <!-- password: at least 8 characters -->
+                        <div class="form-group">
+                            <label class="labels" for="password">Password:</label>
+                            <div>
+                                {% with errors = get_flashed_messages(category_filter=["password"]) %}
+                                {% if errors %}
+                                {% for msg in errors %}
+                                <p class="error">{{ msg }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-                    <!-- password: at least 8 characters -->
-                    <div class="form-group">
-                        <label class="labels" for="password">Password:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["password"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
+                            <input name="password" type="password" class="form-control" id="password">
                         </div>
 
-                        <input name="password" type="password" class="form-control" id="password">
-                    </div>
+                        <!-- confirm password: matches password -->
+                        <div class="form-group">
+                            <label class="labels" for="confirm-password">Confirm password:</label>
+                            <div>
+                                {% with errors = get_flashed_messages(category_filter=["confirm-password"]) %}
+                                {% if errors %}
+                                {% for msg in errors %}
+                                <p class="error">{{ msg }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                {% endwith %}
+                            </div>
 
-                    <!-- confirm password: matches password -->
-                    <div class="form-group">
-                        <label class="labels" for="confirm-password">Confirm password:</label>
-                        <div>
-                            {% with errors = get_flashed_messages(category_filter=["confirm-password"]) %}
-                            {% if errors %}
-                            {% for msg in errors %}
-                            <p class="error">{{ msg }}</p>
-                            {% endfor %}
-                            {% endif %}
-                            {% endwith %}
+                            <input name="confirm-password" type="password" class="form-control" id="confirm-password">
                         </div>
 
-                        <input name="confirm-password" type="password" class="form-control" id="confirm-password">
-                    </div>
-
-                    <button type="submit" class="btn btn-dark" id="bttnSubmit">Register!</button>
-                </form>
+                        <button type="submit" class="btn btn-dark" id="bttnSubmit">Register!</button>
+                    </form>
+                </div>
             </div>
 
             <!-- =============== LOGIN COLUMN ================ -->
-            <div class="col" style="margin-left:15px; padding: 30px; background-color: #ded; height: min-content;">
-                <h2>Login here!</h2>
-                <form action="/login" method="post">
+            <div class="col" style="margin-left:15px; padding: 30px;  height: min-content;">
+                <h2 id="myFont" style="margin:0 0 10px 15px; ">Login</h2>
+                <div class="col" style="border: 4px solid #ded; padding: 15px;">
+                    <form action="/login" method="post">
 
-                    <!-- email -->
-                    <div class="form-group">
-                        <label class="labels" for="email">Email:</label>
-                        <input name="email" type="text" class="form-control" id="email">
-                    </div>
-                    <!-- password -->
-                    <div class="form-group">
-                        <label class="labels" for="password">Password:</label>
-                        <input name="password" type="password" class="form-control" id="password">
-                    </div>
-                    <div>
-                        {% with errors = get_flashed_messages(category_filter=["login"]) %}
-                        {% if errors %}
-                        {% for msg in errors %}
-                        <p class="error">{{ msg }}</p>
-                        {% endfor %}
-                        {% endif %}
-                        {% endwith %}
-                    </div>
-                    <button type="submit" class="btn btn-dark" id="bttnSubmit">Login!</button>
-                </form>
+                        <!-- email -->
+                        <div class="form-group">
+                            <label class="labels" for="email">Email:</label>
+                            <input name="email" type="text" class="form-control" id="email">
+                        </div>
+                        <!-- password -->
+                        <div class="form-group">
+                            <label class="labels" for="password">Password:</label>
+                            <input name="password" type="password" class="form-control" id="password">
+                        </div>
+                        <div>
+                            {% with errors = get_flashed_messages(category_filter=["login"]) %}
+                            {% if errors %}
+                            {% for msg in errors %}
+                            <p class="error">{{ msg }}</p>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                        </div>
+                        <button type="submit" class="btn btn-dark" id="bttnSubmit">Login!</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -174,4 +181,5 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

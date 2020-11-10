@@ -1,18 +1,15 @@
 
 
-.error {
-     color: red;
-}
-
 
 body {
     font: Helvetica, sans-serif;
+
 }
 
 .addBookLabel {
     font-weight: bold;
 }
-
+/* ----------------------------- */
 #deleteImg {
      font-size: 15px;
      background-color: transparent;
@@ -23,3 +20,37 @@ body {
 #deleteImg:hover {
      color: red;
 }
+/* ----------------------------- */
+.error {
+     color: red;
+}
+
+/* ----------------------------- */
+
+#myFont {
+     font-family: "Merriweather", Georgia, "Times New Roman", serif;
+}
+
+
+/* ----------------------------- */
+#myNavItem {
+     transition: .1s;
+}
+
+#myNavItem:hover {
+     background-color: #acb;
+}
+
+/* ----------------------------- */
+
+
+
+/* ----------------------------- */
+
+
+
+/* ----------------------------- */
+
+
+/* ----------------------------- */
+
