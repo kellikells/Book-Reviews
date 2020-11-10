@@ -60,86 +60,81 @@
         <div class="row">
 
             <!-- ------------------ Left column -------------------- -->
-            <div class="col-9">
+            <div class="col-9" style="max-width:95%; padding-right: 45px;">
                 <!-- <h1 id="myFont" style="margin-bottom: 20px;">Recent Reviews:</h1> -->
 
                 <!-- LOOP FOR LAST 3 REVIEWS -->
 
                 {% for review in results %}
-                <div class="row" style="margin-bottom: 20px; border-top: solid 2px #acd; max-width:97%;">
+                <div class="row" style="margin-bottom: 20px; border-top: solid 2px #acd;">
                     <div class="col">
-
-
-                        <div class="row" style="justify-content: space-between; align-items: flex-end;">
-                            <div class="col">
-
-                                <!-- user alias as a link  -->
-                                <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }}</a> rated it:
-                                <span style="font-size:10px;">
-
-                                    <!-- rating -->
-                                    {% if review.rating == '1' %}
-                                    <i class="material-icons">star</i><i class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i>
-                                    {% endif %}
-
-                                    {% if review.rating == '2' %}
-                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i>
-                                    {% endif %}
-
-                                    {% if review.rating == '3' %}
-                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star</i><i class="material-icons">star_outline</i><i
-                                        class="material-icons">star_outline</i>
-                                    {% endif %}
-
-                                    {% if review.rating == '4' %}
-                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star_outline</i>
-                                    {% endif %}
-
-                                    {% if review.rating == '5' %}
-                                    <i class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star</i><i class="material-icons">star</i><i
-                                        class="material-icons">star</i>
-                                    {% endif %}
-                                </span>
-                            </div>
-                            <div class="col" style="text-align: right;">
-                                <!-- comment's timestamp  -->
-                                posted @ {{ review.updated_at }}
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <!-- book title as link -->
-                                <a href="/get_book_review/{{ review.book_id }}">
-                                    <h4 id="myFont">{{ review.title|capitalize }}</h4>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                by {{ review.author_name }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col">
-                                <!-- review content -->
-                                {{ review.content }}
-                            </div>
-
-                        </div>
+                        <!-- book title as link -->
+                        <a href="/get_book_review/{{ review.book_id }}">
+                            <h4 id="myFont">{{ review.title|capitalize }}</h4>
+                        </a>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        by {{ review.author_name }}
+                    </div>
+                </div>
+                <div class="row" style="justify-content: space-between; align-items: flex-end;">
+                    <div class="col">
 
+                        <!-- user alias as a link  -->
+                        <a href="/getUser/{{ review.user_id }}">{{ review.alias|upper }}</a> said:
+                    </div>
+
+
+                    <div class="col-3" style="text-align:right;">
+                        <span style="font-size:10px;">
+
+                            <!-- rating -->
+                            {% if review.rating == '1' %}
+                            <i class="material-icons">star</i><i class="material-icons">star_outline</i><i
+                                class="material-icons">star_outline</i><i class="material-icons">star_outline</i><i
+                                class="material-icons">star_outline</i>
+                            {% endif %}
+
+                            {% if review.rating == '2' %}
+                            <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star_outline</i><i class="material-icons">star_outline</i><i
+                                class="material-icons">star_outline</i>
+                            {% endif %}
+
+                            {% if review.rating == '3' %}
+                            <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star</i><i class="material-icons">star_outline</i><i
+                                class="material-icons">star_outline</i>
+                            {% endif %}
+
+                            {% if review.rating == '4' %}
+                            <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star_outline</i>
+                            {% endif %}
+
+                            {% if review.rating == '5' %}
+                            <i class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star</i><i class="material-icons">star</i><i
+                                class="material-icons">star</i>
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!-- review content -->
+                        {{ review.content }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="text-align: right;">
+                        <!-- comment's timestamp  -->
+                        posted @ {{ review.updated_at }}
+                    </div>
+                </div>
                 {% endfor %}
             </div>
 
