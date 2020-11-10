@@ -325,10 +325,9 @@ def getBookReview(bookId):
     }
     review_results = mysql.query_db(query, data)
 
+    # return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results))
 
-    image = "static/filled_star.jpg"
-
-    return render_template('bookreview.html', results = results, review_results= review_results, total = len(review_results), image=image)
+    return render_template('bookreview.html', results = results, review_results= review_results)
 
 
 
